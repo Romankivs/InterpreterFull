@@ -1,0 +1,104 @@
+# depslib dependency file v1.0
+1619357830 source:/home/sviat/CbProjects/LexAnalizer/main.cpp
+	"LexAnalizer.h"
+
+1619357799 source:/home/sviat/CbProjects/LexAnalizer/LexAnalizer.cpp
+	"LexAnalizer.h"
+
+1619357271 /home/sviat/CbProjects/LexAnalizer/LexAnalizer.h
+	<iostream>
+	"State.h"
+	"Additional.h"
+
+1619357271 /home/sviat/CbProjects/LexAnalizer/include/State.h
+	<string>
+	<map>
+	<algorithm>
+	<climits>
+	<vector>
+
+1618320602 source:/home/sviat/CbProjects/LexAnalizer/src/State.cpp
+	"State.h"
+
+1619373674 /home/sviat/CbProjects/LexAnalizer/include/Additional.h
+	<string>
+
+1619373705 source:/home/sviat/CbProjects/LexAnalizer/src/Additional.cpp
+	"Additional.h"
+
+1619382059 source:/home/sviat/CbProjects/LexAnalizer/Syntax/SyntaxAnalizer.cpp
+	"SyntaxAnalizer.h"
+
+1619383797 /home/sviat/CbProjects/LexAnalizer/Syntax/SyntaxAnalizer.h
+	"Additional.h"
+	"STNode.h"
+	<map>
+
+1619380136 source:/home/sviat/CbProjects/LexAnalizer/src/LexAnalizer.cpp
+	"LexAnalizer.h"
+
+1619357271 /home/sviat/CbProjects/LexAnalizer/include/LexAnalizer.h
+	<iostream>
+	"State.h"
+	"Additional.h"
+
+1619382230 source:/home/sviat/CbProjects/LexAnalizer/src/main.cpp
+	"LexAnalizer.h"
+	"STNode.h"
+	"SyntaxAnalizer.h"
+
+1619384568 source:/home/sviat/CbProjects/LexAnalizer/Syntax/STNode.cpp
+	"STNode.h"
+
+1619384640 /home/sviat/CbProjects/LexAnalizer/Syntax/STNode.h
+	<vector>
+	<iostream>
+
+1619462106 source:/home/sviat/CbProjects/LexAnalizer3/src/Additional.cpp
+	"Additional.h"
+
+1619462107 /home/sviat/CbProjects/LexAnalizer3/include/Additional.h
+	<string>
+
+1619462213 source:/home/sviat/CbProjects/LexAnalizer3/src/LexAnalizer.cpp
+	"LexAnalizer.h"
+
+1619462135 /home/sviat/CbProjects/LexAnalizer3/include/LexAnalizer.h
+	<iostream>
+	"State.h"
+	"Additional.h"
+
+1619357271 /home/sviat/CbProjects/LexAnalizer3/include/State.h
+	<string>
+	<map>
+	<algorithm>
+	<climits>
+	<vector>
+
+1619466132 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
+	"LexAnalizer.h"
+	"STNode.h"
+	"SyntaxAnalizer.h"
+	<variant>
+	<memory>
+
+1619445406 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
+	<vector>
+	<iostream>
+	<variant>
+	<memory>
+
+1619463059 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
+	"Additional.h"
+	"STNode.h"
+	<map>
+
+1618320602 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
+	"State.h"
+
+1619467472 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+	"SyntaxAnalizer.h"
+
+1619464166 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
+	"STNode.h"
+
