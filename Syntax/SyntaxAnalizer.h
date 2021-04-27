@@ -5,7 +5,7 @@
 class SyntaxAnalizer
 {
     public:
-        SyntaxAnalizer(vector<Token>& input) : input(make_shared<vector<Token>>(input)) {};
+        SyntaxAnalizer(vector<Token>& anInput);
         void setInput(vector<Token>& inp);
         void getNext();
 

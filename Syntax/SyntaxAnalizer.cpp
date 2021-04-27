@@ -1,5 +1,10 @@
 #include "SyntaxAnalizer.h"
 
+SyntaxAnalizer::SyntaxAnalizer(vector<Token>& anInput)
+{
+    input = make_shared<vector<Token>>(anInput);
+}
+
 void SyntaxAnalizer::getNext()
 {
     if ((iter + 1) != input->end())
@@ -128,14 +133,14 @@ void SyntaxAnalizer::run(shared_ptr<ASTNode> node) //fix if not enough args
         && (accept(Lexema::WHITESPACE))
         && (accept(Lexema::STRING) || accept(Lexema::NAME)))
     {
-        node = make_shared<runNode>((iter - 3)->value, (iter - 1)->value); // fix
+        node = make_shared<runNode>((iter - 3)->value, (iter - 1)->value);
     }
     else
         cout << "run: not enough arguments" << endl;
 
 }
 
-void SyntaxAnalizer::equalSign(shared_ptr<ASTNode> node)
+void SyntaxAnalizer::equalSign(shared_ptr<ASTNode> node) // fix me
 {
     node = make_shared<equalSignNode>(iter->value, (iter + 2)->value);
     iter += 3; // walk through name, =, value

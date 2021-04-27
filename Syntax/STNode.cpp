@@ -12,8 +12,7 @@ void fullCmdNode::performAction()
 
 equalSignNode::equalSignNode(string& name, string& value)
 {
-    //equalSignData tmp = {&name, &value};
-    //NodeData = tmp;
+    NodeData = equalSignData{make_shared<string>(name), make_shared<string>(value)};
     cout << name << "=" << value << endl;
 };
 
