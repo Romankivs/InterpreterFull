@@ -5,32 +5,32 @@
 class SyntaxAnalizer
 {
     public:
-        SyntaxAnalizer(vector<Token>& input) : input(&input) {};
+        SyntaxAnalizer(vector<Token>& input) : input(make_shared<vector<Token>>(input)) {};
         void setInput(vector<Token>& inp);
         void getNext();
 
         bool accept(Lexema type);
         bool expect(Lexema type);
 
-        ASTNode* getResult();
-        ASTNode* buildTree();
-        void cmd(ASTNode* node);
-        void echo(ASTNode* node);
-        void quit(ASTNode* node);
-        void argc(ASTNode* node);
-        void argv(ASTNode* node);
-        void envp(ASTNode* node);
-        void help(ASTNode* node);
-        void vars(ASTNode* node);
-        void run(ASTNode* node);
-        void equalSign(ASTNode* node);
-        void raw(ASTNode* node);
+        shared_ptr<ASTNode> getResult();
+        shared_ptr<ASTNode> buildTree();
+        void cmd(shared_ptr<ASTNode> node);
+        void echo(shared_ptr<ASTNode> node);
+        void quit(shared_ptr<ASTNode> node);
+        void argc(shared_ptr<ASTNode> node);
+        void argv(shared_ptr<ASTNode> node);
+        void envp(shared_ptr<ASTNode> node);
+        void help(shared_ptr<ASTNode> node);
+        void vars(shared_ptr<ASTNode> node);
+        void run(shared_ptr<ASTNode> node);
+        void equalSign(shared_ptr<ASTNode> node);
+        void raw(shared_ptr<ASTNode> node);
     private:
         vector<Token>::iterator iter;
-        vector<Token>* input;
+        shared_ptr<vector<Token>> input;
         Token currentToken;
-        ASTNode* resultRoot;
-        map<Lexema, void(SyntaxAnalizer::*)(ASTNode*)> possibleCmds = {{Lexema::ECHO, &SyntaxAnalizer::echo},
+        shared_ptr<ASTNode> resultRoot;
+        map<Lexema, void(SyntaxAnalizer::*)(shared_ptr<ASTNode>)> possibleCmds = {{Lexema::ECHO, &SyntaxAnalizer::echo},
                                                                       {Lexema::QUIT, &SyntaxAnalizer::quit},
                                                                       {Lexema::ARGC, &SyntaxAnalizer::argc},
                                                                       {Lexema::ARGV, &SyntaxAnalizer::argv},

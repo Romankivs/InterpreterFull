@@ -10,15 +10,15 @@ class ASTNode;
 class cmdNode;
 class rawNode;
 
-struct fullCmdData{ cmdNode* command; };
+struct fullCmdData{ shared_ptr<cmdNode> command; };
 
-struct equalSignData{ string* varName, *varValue;};
+struct equalSignData{ shared_ptr<string> varName, varValue;};
 
-struct cmdData{ ASTNode* cmd; };
+struct cmdData{ shared_ptr<ASTNode> cmd; };
 
-struct echoData{ rawNode* raw;};
+struct echoData{ shared_ptr<rawNode> raw;};
 
-struct rawData{ vector<string*> rawStr; };
+struct rawData{ vector<string> rawStr; };
 
 class ASTNode
 {
