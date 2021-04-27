@@ -33,8 +33,7 @@ ASTNode* SyntaxAnalizer::buildTree()
     currentToken = *iter;
 
     resultRoot = new fullCmdNode;
-    fullCmdData tmp;
-    resultRoot->NodeData = tmp;
+    resultRoot->NodeData = fullCmdData{};
 
     accept(Lexema::WHITESPACE);
     cmd(get<fullCmdData>(resultRoot->NodeData).command);
@@ -45,12 +44,10 @@ ASTNode* SyntaxAnalizer::buildTree()
 void SyntaxAnalizer::cmd(ASTNode* node)
 {
     node = new cmdNode;
-    cmdData tmp;
-    node->NodeData = tmp;
+    node->NodeData = cmdData{};
     if (possibleCmds.contains(currentToken.type))
     {
         (*this.*possibleCmds[currentToken.type])(get<cmdData>(node->NodeData).cmd);
-        getNext();
     }
     else if (accept(Lexema::STRING) || accept(Lexema::NAME))
     {
@@ -63,63 +60,69 @@ void SyntaxAnalizer::cmd(ASTNode* node)
 void SyntaxAnalizer::echo(ASTNode* node) //fix if not enough args
 {
     node = new echoNode;
-    echoData tmp;
-    node->NodeData = tmp;
-    getNext();
+    node->NodeData = echoData{};
+    getNext(); // skip "echo"
+    getNext(); // skip ws
     raw(get<echoData>(node->NodeData).raw);
 }
 
 void SyntaxAnalizer::raw(ASTNode* node)
 {
     node = new rawNode();
-    rawData tmp;
     vector<string*> result;
-    while (iter->type != Lexema::END_OF_LINE)
+    while (currentToken.type != Lexema::END_OF_LINE)
     {
         result.push_back(&(iter->value));
-        iter += 1;
+        getNext();
     }
-    tmp.rawStr = result;
     for (int i = 0 ; i < result.size(); ++i)
     {
         cout << *result[i] << endl;
     }
-    node->NodeData = tmp;
+    node->NodeData = rawData{result};
 }
 
 void SyntaxAnalizer::quit(ASTNode* node)
 {
+    getNext();
     node = new quitNode;
 }
 
 void SyntaxAnalizer::argc(ASTNode* node)
 {
+    getNext();
     node = new argcNode;
 }
 
 void SyntaxAnalizer::argv(ASTNode* node)
 {
+    getNext();
     node = new argvNode;
 }
 
 void SyntaxAnalizer::envp(ASTNode* node)
 {
+    getNext();
     node = new envpNode;
 }
 
 void SyntaxAnalizer::help(ASTNode* node)
 {
+    getNext();
     node = new helpNode;
 }
 
 void SyntaxAnalizer::vars(ASTNode* node)
 {
+    getNext();
     node = new varsNode;
 }
 
 void SyntaxAnalizer::run(ASTNode* node) //fix if not enough args
 {
-    node = new runNode((iter + 1)->value, (iter + 3)->value);
+    getNext(); // skip "run"
+    getNext(); // skip ws
+    cout << (iter-1)->value << endl;
     if ((accept(Lexema::STRING) || accept(Lexema::NAME))
         && (accept(Lexema::WHITESPACE))
         && (accept(Lexema::STRING) || accept(Lexema::NAME)))

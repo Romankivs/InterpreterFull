@@ -10,30 +10,15 @@ class ASTNode;
 class cmdNode;
 class rawNode;
 
-struct fullCmdData
-{
-    cmdNode* command;
-};
+struct fullCmdData{ cmdNode* command; };
 
-struct equalSignData
-{
-    string* varName, *varValue;
-};
+struct equalSignData{ string* varName, *varValue;};
 
-struct cmdData
-{
-    ASTNode* cmd;
-};
+struct cmdData{ ASTNode* cmd; };
 
-struct echoData
-{
-    rawNode* raw;
-};
+struct echoData{ rawNode* raw;};
 
-struct rawData
-{
-    vector<string*> rawStr;
-};
+struct rawData{ vector<string*> rawStr; };
 
 class ASTNode
 {
