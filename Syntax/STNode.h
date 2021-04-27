@@ -10,21 +10,37 @@ class ASTNode;
 class cmdNode;
 class rawNode;
 
-struct fullCmdData{ shared_ptr<cmdNode> command; };
+struct fullCmdData{
+    ASTNode* command;
+};
 
-struct equalSignData{ shared_ptr<string> varName, varValue;};
+struct equalSignData{
+     string varName, varValue;
+};
 
-struct cmdData{ shared_ptr<ASTNode> cmd; };
+struct cmdData{
+    ASTNode* cmd;
+};
 
-struct echoData{ shared_ptr<rawNode> raw;};
+struct echoData{
+    ASTNode* raw;
+};
 
-struct rawData{ vector<string> rawStr; };
+struct runData{
+    string func, lib;
+};
+
+struct rawData{
+     vector<string> rawStr;
+};
 
 class ASTNode
 {
 public:
     virtual void performAction() {}; //reserved for later usage
-    variant<fullCmdData, equalSignData, cmdData, echoData, rawData> NodeData;
+    virtual ~ASTNode() = default;
+    variant<fullCmdData, equalSignData, cmdData, echoData, runData, rawData> NodeData;
+    int a;
 };
 
 class openBraceNode : public ASTNode
@@ -52,7 +68,7 @@ private:
 class equalSignNode : public ASTNode
 {
 public:
-    equalSignNode(string& name, string& value);
+    equalSignNode();
     void performAction() override;
 };
 
@@ -68,6 +84,7 @@ class cmdNode : public ASTNode
 {
 public:
     cmdNode();
+    ~cmdNode() { delete get<cmdData>(NodeData).cmd;}
     void performAction() override;
 };
 
@@ -75,6 +92,7 @@ class fullCmdNode : public ASTNode
 {
 public:
     fullCmdNode();
+    ~fullCmdNode() { delete get<fullCmdData>(NodeData).command;}
     void performAction() override;
 };
 
@@ -89,6 +107,7 @@ class echoNode : public ASTNode
 {
 public:
     echoNode() {};
+    ~echoNode() { delete get<echoData>(NodeData).raw;}
     void performAction() override {};
 };
 
@@ -137,7 +156,7 @@ public:
 class runNode : public ASTNode
 {
 public:
-    runNode(string& func, string& lib);
+    runNode();
     void performAction() override;
 };
 

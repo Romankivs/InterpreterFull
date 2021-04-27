@@ -10,10 +10,9 @@ void fullCmdNode::performAction()
 
 }
 
-equalSignNode::equalSignNode(string& name, string& value)
+equalSignNode::equalSignNode()
 {
-    NodeData = equalSignData{make_shared<string>(name), make_shared<string>(value)};
-    cout << name << "=" << value << endl;
+
 };
 
 void equalSignNode::performAction()
@@ -23,7 +22,7 @@ void equalSignNode::performAction()
 
 cmdNode::cmdNode()
 {
-
+    a = 1232;
 }
 
 void cmdNode::performAction()
@@ -31,9 +30,9 @@ void cmdNode::performAction()
 
 }
 
-runNode::runNode(string& func, string& lib)
+runNode::runNode()
 {
-    cout << "run " << func << " from " << lib << endl;
+
 }
 
 void runNode::performAction()

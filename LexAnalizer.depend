@@ -75,20 +75,20 @@
 	<climits>
 	<vector>
 
-1619535290 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
+1619556310 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
 	"LexAnalizer.h"
 	"STNode.h"
 	"SyntaxAnalizer.h"
 	<variant>
 	<memory>
 
-1619535289 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
+1619556444 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
 	<vector>
 	<iostream>
 	<variant>
 	<memory>
 
-1619535289 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
+1619551858 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
 	"Additional.h"
 	"STNode.h"
 	<map>
@@ -96,9 +96,9 @@
 1618320602 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1619535289 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1619555723 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
-1619535289 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
+1619555677 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
 	"STNode.h"
 

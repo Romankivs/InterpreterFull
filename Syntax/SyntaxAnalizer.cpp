@@ -2,12 +2,17 @@
 
 SyntaxAnalizer::SyntaxAnalizer(vector<Token>& anInput)
 {
-    input = make_shared<vector<Token>>(anInput);
+    input = anInput;
+}
+
+SyntaxAnalizer::~SyntaxAnalizer()
+{
+    delete resultRoot;
 }
 
 void SyntaxAnalizer::getNext()
 {
-    if ((iter + 1) != input->end())
+    if ((iter + 1) != input.end())
         iter +=1;
     currentToken = *iter;
 }
@@ -33,48 +38,66 @@ bool SyntaxAnalizer::expect(Lexema type)
     return false;
 }
 
-shared_ptr<ASTNode> SyntaxAnalizer::buildTree()
+ASTNode* SyntaxAnalizer::buildTree()
 {
-    iter = input->begin();
+    iter = input.begin();
     currentToken = *iter;
 
-    resultRoot = make_shared<fullCmdNode>();
+    resultRoot = new fullCmdNode;
     resultRoot->NodeData = fullCmdData{};
 
     accept(Lexema::WHITESPACE);
     cmd(get<fullCmdData>(resultRoot->NodeData).command);
-    expect(Lexema::END_OF_LINE);
+    if (currentToken.type != Lexema::END_OF_LINE)
+        cout << "error: endl not found" << endl;
     return resultRoot;
 }
 
-void SyntaxAnalizer::cmd(shared_ptr<ASTNode> node)
+void SyntaxAnalizer::cmd(ASTNode* &node)
 {
-    node = make_shared<cmdNode>();
+    node = new cmdNode;
     node->NodeData = cmdData{};
+    /*if (currentToken.type == Lexema::ECHO)
+        echo(get<cmdData>(node->NodeData).cmd);
+    else if (currentToken.type == Lexema::QUIT)
+        quit(get<cmdData>(node->NodeData).cmd);
+    else if (currentToken.type == Lexema::ARGC)
+        argc(get<cmdData>(node->NodeData).cmd);
+    else if (currentToken.type == Lexema::ARGV)
+        argv(get<cmdData>(node->NodeData).cmd);
+    else if (currentToken.type == Lexema::ENVP)
+        envp(get<cmdData>(node->NodeData).cmd);
+    else if (currentToken.type == Lexema::HELP)
+        help(get<cmdData>(node->NodeData).cmd);
+    else if (currentToken.type == Lexema::VARS)
+        vars(get<cmdData>(node->NodeData).cmd);
+    else if (currentToken.type == Lexema::RUN)
+        run(get<cmdData>(node->NodeData).cmd);*/
     if (possibleCmds.contains(currentToken.type))
     {
         (*this.*possibleCmds[currentToken.type])(get<cmdData>(node->NodeData).cmd);
     }
-    else if (accept(Lexema::STRING) || accept(Lexema::NAME))
+    else if (accept(Lexema::NAME))
     {
         equalSign(get<cmdData>(node->NodeData).cmd);
     }
     else
-        cout << " syntax error: command not found" << endl;
+        cout << "syntax error: command not found" << endl;
+
 }
 
-void SyntaxAnalizer::echo(shared_ptr<ASTNode> node) //fix if not enough args
+void SyntaxAnalizer::echo(ASTNode* &node) //fix if not enough args
 {
-    node = make_shared<echoNode>();
+    node = new echoNode;
     node->NodeData = echoData{};
     getNext(); // skip "echo"
     getNext(); // skip ws
     raw(get<echoData>(node->NodeData).raw);
 }
 
-void SyntaxAnalizer::raw(shared_ptr<ASTNode> node)
+void SyntaxAnalizer::raw(ASTNode* &node)
 {
-    node = make_shared<rawNode>();
+    node = new rawNode;
     vector<string> result;
     while (currentToken.type != Lexema::END_OF_LINE)
     {
@@ -88,43 +111,43 @@ void SyntaxAnalizer::raw(shared_ptr<ASTNode> node)
     node->NodeData = rawData{result};
 }
 
-void SyntaxAnalizer::quit(shared_ptr<ASTNode> node)
+void SyntaxAnalizer::quit(ASTNode* &node)
 {
     getNext();
-    node = make_shared<quitNode>();
+    node = new quitNode;
 }
 
-void SyntaxAnalizer::argc(shared_ptr<ASTNode> node)
+void SyntaxAnalizer::argc(ASTNode* &node)
 {
     getNext();
-    node = make_shared<argcNode>();
+    node = new argcNode;
 }
 
-void SyntaxAnalizer::argv(shared_ptr<ASTNode> node)
+void SyntaxAnalizer::argv(ASTNode* &node)
 {
     getNext();
-    node = make_shared<argvNode>();
+    node = new argvNode;
 }
 
-void SyntaxAnalizer::envp(shared_ptr<ASTNode> node)
+void SyntaxAnalizer::envp(ASTNode* &node)
 {
     getNext();
-    node = make_shared<envpNode>();
+    node = new envpNode;
 }
 
-void SyntaxAnalizer::help(shared_ptr<ASTNode> node)
+void SyntaxAnalizer::help(ASTNode* &node)
 {
     getNext();
-    node = make_shared<helpNode>();
+    node = new helpNode;
 }
 
-void SyntaxAnalizer::vars(shared_ptr<ASTNode> node)
+void SyntaxAnalizer::vars(ASTNode* &node)
 {
     getNext();
-    node = make_shared<varsNode>();
+    node = new varsNode;
 }
 
-void SyntaxAnalizer::run(shared_ptr<ASTNode> node) //fix if not enough args
+void SyntaxAnalizer::run(ASTNode* &node) //fix if not enough args
 {
     getNext(); // skip "run"
     getNext(); // skip ws
@@ -133,25 +156,33 @@ void SyntaxAnalizer::run(shared_ptr<ASTNode> node) //fix if not enough args
         && (accept(Lexema::WHITESPACE))
         && (accept(Lexema::STRING) || accept(Lexema::NAME)))
     {
-        node = make_shared<runNode>((iter - 3)->value, (iter - 1)->value);
+        node = new runNode;
+        node->NodeData = runData{(iter - 3)->value, (iter - 1)->value};
     }
     else
         cout << "run: not enough arguments" << endl;
 
 }
 
-void SyntaxAnalizer::equalSign(shared_ptr<ASTNode> node) // fix me
+void SyntaxAnalizer::equalSign(ASTNode* &node) // fix me
 {
-    node = make_shared<equalSignNode>(iter->value, (iter + 2)->value);
-    iter += 3; // walk through name, =, value
+    if (accept(Lexema::EQUAL_SIGN)
+        && (accept(Lexema::STRING) || accept(Lexema::NAME))
+       )
+    {
+        node = new equalSignNode;
+        node->NodeData = equalSignData{(iter - 3)->value, (iter - 1)->value};
+    }
+    else
+        cout << "equal: wrong token" << endl;
 }
 
 void SyntaxAnalizer::setInput(vector<Token>& inp)
 {
-    input = shared_ptr<vector<Token>>(&inp);
+    input = inp;
 }
 
-shared_ptr<ASTNode> SyntaxAnalizer::getResult()
+ASTNode* SyntaxAnalizer::getResult()
 {
     return resultRoot;
 }

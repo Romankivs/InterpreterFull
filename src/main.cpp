@@ -5,6 +5,13 @@
 #include <variant>
 #include <memory>
 
+
+void cd(ASTNode* &node)
+{
+    node = new cmdNode();
+    node->NodeData = cmdData{};
+}
+
 struct strVec
 {
     int a;
@@ -16,7 +23,7 @@ int main()
     State stateTmp;
     cout << "Min Levenstein distance between two states: " << stateTmp.minLevensteinDistanceBetweenStates() << endl;
     LexAnalizer analizer;
-    analizer.setInputString("   run cum from  " );
+    analizer.setInputString(" run  " );
     vector<Token> tokens;
     Token temp;
     while ((temp = analizer.getToken()).value != "")
@@ -29,19 +36,7 @@ int main()
     //~~~~~~~~~~~~~~~~~~~//
     SyntaxAnalizer an(tokens);
     an.buildTree();
-    shared_ptr<ASTNode> res = an.getResult();
-    res->performAction();
-
-    //~~~~~~~~~~~~~~~~~~~~//
-    /*variant<int, vector<int>>* inv =  new variant<int, vector<int>>;
-    vector<int> tmp;
-    *inv = tmp;
-    get<vector<int>>(*inv).push_back(9);
-    //~~~~~~~~~~~~~~~~~~~~//
-    shared_ptr<variant<int, vector<int>>> p(inv);
-    get<vector<int>>(*p).push_back(1);
-    cout << get<vector<int>>(*inv).front() << endl;*/
-
+    ASTNode* res = an.getResult();
 }
 
 
