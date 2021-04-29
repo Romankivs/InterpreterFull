@@ -6,174 +6,101 @@
 
 using namespace std;
 
-class ASTNode;
-class cmdNode;
-class rawNode;
+struct ASTNode;
+struct cmdNode;
+struct rawNode;
 
-struct fullCmdData{
-    ASTNode* command;
-};
+struct fullCmdData{ ASTNode* command; };
 
-struct equalSignData{
-     string varName, varValue;
-};
+struct equalSignData{ string varName, varValue; };
 
-struct cmdData{
-    ASTNode* cmd;
-};
+struct cmdData{ ASTNode* cmd;};
 
-struct echoData{
-    ASTNode* raw;
-};
+struct echoData{ ASTNode* raw; };
 
-struct runData{
-    string func, lib;
-};
+struct runData{ string func, lib; };
 
-struct rawData{
-     vector<string> rawStr;
-};
+struct rawData{ vector<string> rawStr; };
 
-class ASTNode
+struct ASTNode
 {
-public:
     virtual void performAction() {}; //reserved for later usage
     virtual ~ASTNode() = default;
     variant<fullCmdData, equalSignData, cmdData, echoData, runData, rawData> NodeData;
     int a;
 };
 
-class openBraceNode : public ASTNode
+struct equalSignNode : public ASTNode
 {
-public:
-    openBraceNode();
-private:
+    equalSignNode() {};
+    void performAction() override {};
 };
 
-class closeBraceNode : public ASTNode
+struct cmdNode : public ASTNode
 {
-public:
-    closeBraceNode();
-private:
-};
-
-class dollarSignNode : public ASTNode
-{
-public:
-    dollarSignNode();
-private:
-
-};
-
-class equalSignNode : public ASTNode
-{
-public:
-    equalSignNode();
-    void performAction() override;
-};
-
-class nameNode : public ASTNode
-{
-public:
-    nameNode();
-private:
-
-};
-
-class cmdNode : public ASTNode
-{
-public:
-    cmdNode();
+    cmdNode() {};
     ~cmdNode() { delete get<cmdData>(NodeData).cmd;}
-    void performAction() override;
+    void performAction() override {};
 };
 
-class fullCmdNode : public ASTNode
+struct fullCmdNode : public ASTNode
 {
-public:
-    fullCmdNode();
+    fullCmdNode() {};
     ~fullCmdNode() { delete get<fullCmdData>(NodeData).command;}
-    void performAction() override;
+    void performAction() override {};
 };
 
-class rawNode : public ASTNode
+struct rawNode : public ASTNode
 {
-public:
     rawNode() {};
     void performAction() override {}
 };
 
-class echoNode : public ASTNode
+struct echoNode : public ASTNode
 {
-public:
     echoNode() {};
     ~echoNode() { delete get<echoData>(NodeData).raw;}
     void performAction() override {};
 };
 
-class argcNode : public ASTNode
+struct argcNode : public ASTNode
 {
-public:
     argcNode() {};
     void performAction() override {};
 };
 
-class argvNode : public ASTNode
+struct argvNode : public ASTNode
 {
-public:
     argvNode() {};
     void performAction() override {};
 };
 
-class envpNode : public ASTNode
+struct envpNode : public ASTNode
 {
-public:
     envpNode() {};
     void performAction() override {};
 };
 
-class quitNode : public ASTNode
+struct quitNode : public ASTNode
 {
-public:
     quitNode() {};
     void performAction() override {};
 };
 
-class helpNode : public ASTNode
+struct helpNode : public ASTNode
 {
-public:
     helpNode() {};
     void performAction() override {};
 };
 
-class varsNode : public ASTNode
+struct varsNode : public ASTNode
 {
-public:
     varsNode() {};
     void performAction() override {};
 };
 
-class runNode : public ASTNode
+struct runNode : public ASTNode
 {
-public:
-    runNode();
-    void performAction() override;
-};
-
-class optionalWsNode : public ASTNode
-{
-public:
-    optionalWsNode();
-};
-
-class wsNode : public ASTNode
-{
-public:
-    wsNode();
-};
-
-class endlNode : public ASTNode
-{
-public:
-    endlNode();
+    runNode() {};
+    void performAction() override {};
 };

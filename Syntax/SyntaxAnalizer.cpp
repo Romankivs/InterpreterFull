@@ -57,7 +57,7 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
 {
     node = new cmdNode;
     node->NodeData = cmdData{};
-    /*if (currentToken.type == Lexema::ECHO)
+    /*if (currentToken.type == Lexema::ECHO)  // switch??
         echo(get<cmdData>(node->NodeData).cmd);
     else if (currentToken.type == Lexema::QUIT)
         quit(get<cmdData>(node->NodeData).cmd);
@@ -91,8 +91,10 @@ void SyntaxAnalizer::echo(ASTNode* &node) //fix if not enough args
     node = new echoNode;
     node->NodeData = echoData{};
     getNext(); // skip "echo"
-    getNext(); // skip ws
-    raw(get<echoData>(node->NodeData).raw);
+    if (accept(Lexema::WHITESPACE))
+        raw(get<echoData>(node->NodeData).raw);
+    else
+        cout << "echo: nothing to output" << endl;
 }
 
 void SyntaxAnalizer::raw(ASTNode* &node)
@@ -104,7 +106,7 @@ void SyntaxAnalizer::raw(ASTNode* &node)
         result.push_back(iter->value);
         getNext();
     }
-    for (int i = 0 ; i < result.size(); ++i)
+    for (size_t i = 0 ; i < result.size(); ++i) // for debug
     {
         cout << result[i] << endl;
     }
@@ -150,9 +152,8 @@ void SyntaxAnalizer::vars(ASTNode* &node)
 void SyntaxAnalizer::run(ASTNode* &node) //fix if not enough args
 {
     getNext(); // skip "run"
-    getNext(); // skip ws
-    cout << (iter-1)->value << endl;
-    if ((accept(Lexema::STRING) || accept(Lexema::NAME))
+    if ((accept(Lexema::WHITESPACE))
+        && (accept(Lexema::STRING) || accept(Lexema::NAME))
         && (accept(Lexema::WHITESPACE))
         && (accept(Lexema::STRING) || accept(Lexema::NAME)))
     {
