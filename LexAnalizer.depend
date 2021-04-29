@@ -80,13 +80,13 @@
 	"STNode.h"
 	"SyntaxAnalizer.h"
 
-1619715533 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
+1619715755 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
 	<vector>
 	<iostream>
 	<variant>
 	<memory>
 
-1619714131 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
+1619715932 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
 	"Additional.h"
 	"STNode.h"
 	<map>

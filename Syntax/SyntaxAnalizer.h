@@ -15,6 +15,7 @@ class SyntaxAnalizer
 
         ASTNode* getResult();
         ASTNode* buildTree();
+
         void cmd(ASTNode* &node);
         void echo(ASTNode* &node);
         void quit(ASTNode* &node);

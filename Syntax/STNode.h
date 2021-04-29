@@ -24,83 +24,72 @@ struct rawData{ vector<string> rawStr; };
 
 struct ASTNode
 {
-    virtual void performAction() {}; //reserved for later usage
     virtual ~ASTNode() = default;
+    virtual void evaluate() {}; //reserved for later usage
+
     variant<fullCmdData, equalSignData, cmdData, echoData, runData, rawData> NodeData;
-    int a;
 };
 
 struct equalSignNode : public ASTNode
 {
-    equalSignNode() {};
-    void performAction() override {};
+    void evaluate() override {};
 };
 
 struct cmdNode : public ASTNode
 {
-    cmdNode() {};
     ~cmdNode() { delete get<cmdData>(NodeData).cmd;}
-    void performAction() override {};
+    void evaluate() override {};
 };
 
 struct fullCmdNode : public ASTNode
 {
-    fullCmdNode() {};
     ~fullCmdNode() { delete get<fullCmdData>(NodeData).command;}
-    void performAction() override {};
+    void evaluate() override {};
 };
 
 struct rawNode : public ASTNode
 {
-    rawNode() {};
-    void performAction() override {}
+    void evaluate() override {}
 };
 
 struct echoNode : public ASTNode
 {
-    echoNode() {};
     ~echoNode() { delete get<echoData>(NodeData).raw;}
-    void performAction() override {};
+    void evaluate() override {};
 };
 
 struct argcNode : public ASTNode
 {
-    argcNode() {};
-    void performAction() override {};
+    void evaluate() override {};
 };
 
 struct argvNode : public ASTNode
 {
-    argvNode() {};
-    void performAction() override {};
+    void evaluate() override {};
 };
 
 struct envpNode : public ASTNode
 {
-    envpNode() {};
-    void performAction() override {};
+    void evaluate() override {};
 };
 
 struct quitNode : public ASTNode
 {
-    quitNode() {};
-    void performAction() override {};
+    void evaluate() override {};
 };
 
 struct helpNode : public ASTNode
 {
     helpNode() {};
-    void performAction() override {};
+    void evaluate() override {};
 };
 
 struct varsNode : public ASTNode
 {
-    varsNode() {};
-    void performAction() override {};
+    void evaluate() override {};
 };
 
 struct runNode : public ASTNode
 {
-    runNode() {};
-    void performAction() override {};
+    void evaluate() override {};
 };

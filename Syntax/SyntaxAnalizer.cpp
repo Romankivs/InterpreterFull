@@ -28,7 +28,7 @@ bool SyntaxAnalizer::accept(Lexema type)
     return false;
 }
 
-bool SyntaxAnalizer::expect(Lexema type)
+bool SyntaxAnalizer::expect(Lexema type) // remove???
 {
     if (accept(type))
     {
