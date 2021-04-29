@@ -57,6 +57,32 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
 {
     node = new cmdNode;
     node->NodeData = cmdData{};
+    switch (currentToken.type)
+    {
+    case Lexema::ECHO:
+        echo(get<cmdData>(node->NodeData).cmd); break;
+    case Lexema::QUIT:
+        quit(get<cmdData>(node->NodeData).cmd); break;
+    case Lexema::ARGC:
+        argc(get<cmdData>(node->NodeData).cmd); break;
+    case Lexema::ARGV:
+        argv(get<cmdData>(node->NodeData).cmd); break;
+    case Lexema::ENVP:
+        envp(get<cmdData>(node->NodeData).cmd); break;
+    case Lexema::HELP:
+        help(get<cmdData>(node->NodeData).cmd); break;
+    case Lexema::VARS:
+        vars(get<cmdData>(node->NodeData).cmd); break;
+    case Lexema::RUN:
+        run(get<cmdData>(node->NodeData).cmd); break;
+    default:
+    if (accept(Lexema::NAME))
+    {
+        equalSign(get<cmdData>(node->NodeData).cmd);
+    }
+    else
+        cout << "syntax error: command not found" << endl;
+    }
     /*if (currentToken.type == Lexema::ECHO)  // switch??
         echo(get<cmdData>(node->NodeData).cmd);
     else if (currentToken.type == Lexema::QUIT)
@@ -72,7 +98,7 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
     else if (currentToken.type == Lexema::VARS)
         vars(get<cmdData>(node->NodeData).cmd);
     else if (currentToken.type == Lexema::RUN)
-        run(get<cmdData>(node->NodeData).cmd);*/
+        run(get<cmdData>(node->NodeData).cmd);
     if (possibleCmds.contains(currentToken.type))
     {
         (*this.*possibleCmds[currentToken.type])(get<cmdData>(node->NodeData).cmd);
@@ -82,7 +108,7 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
         equalSign(get<cmdData>(node->NodeData).cmd);
     }
     else
-        cout << "syntax error: command not found" << endl;
+        cout << "syntax error: command not found" << endl;*/
 
 }
 

@@ -27,6 +27,7 @@ class SyntaxAnalizer
         void run(ASTNode* &node);
         void equalSign(ASTNode* &node);
         void raw(ASTNode* &node);
+        void varSubstitution(ASTNode* &node);
     private:
         vector<Token>::iterator iter;
         vector<Token> input;
