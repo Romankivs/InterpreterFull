@@ -1,9 +1,6 @@
 #include "SyntaxAnalizer.h"
 
-SyntaxAnalizer::SyntaxAnalizer(vector<Token>& anInput)
-{
-    input = anInput;
-}
+SyntaxAnalizer::SyntaxAnalizer(vector<Token>& anInput) : input(anInput) {}
 
 SyntaxAnalizer::~SyntaxAnalizer()
 {
@@ -42,21 +39,17 @@ ASTNode* SyntaxAnalizer::buildTree()
 {
     iter = input.begin();
     currentToken = *iter;
-
     resultRoot = new fullCmdNode;
-    resultRoot->NodeData = fullCmdData{};
-
     accept(Lexema::WHITESPACE);
     cmd(get<fullCmdData>(resultRoot->NodeData).command);
     if (currentToken.type != Lexema::END_OF_LINE)
-        cout << "error: endl not found" << endl;
+        cout << "error: endl not found or too many arguments" << endl;
     return resultRoot;
 }
 
 void SyntaxAnalizer::cmd(ASTNode* &node)
 {
     node = new cmdNode;
-    node->NodeData = cmdData{};
     switch (currentToken.type)
     {
     case Lexema::ECHO:
@@ -115,7 +108,6 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
 void SyntaxAnalizer::echo(ASTNode* &node) //fix if not enough args
 {
     node = new echoNode;
-    node->NodeData = echoData{};
     getNext(); // skip "echo"
     if (accept(Lexema::WHITESPACE))
         raw(get<echoData>(node->NodeData).raw);
@@ -125,18 +117,13 @@ void SyntaxAnalizer::echo(ASTNode* &node) //fix if not enough args
 
 void SyntaxAnalizer::raw(ASTNode* &node)
 {
-    node = new rawNode;
     vector<string> result;
     while (currentToken.type != Lexema::END_OF_LINE)
     {
         result.push_back(iter->value);
         getNext();
     }
-    for (size_t i = 0 ; i < result.size(); ++i) // for debug
-    {
-        cout << result[i] << endl;
-    }
-    node->NodeData = rawData{result};
+    node = new rawNode(result);
 }
 
 void SyntaxAnalizer::quit(ASTNode* &node)
@@ -183,8 +170,7 @@ void SyntaxAnalizer::run(ASTNode* &node) //fix if not enough args
         && (accept(Lexema::WHITESPACE))
         && (accept(Lexema::STRING) || accept(Lexema::NAME)))
     {
-        node = new runNode;
-        node->NodeData = runData{(iter - 3)->value, (iter - 1)->value};
+        node = new runNode((iter - 3)->value, (iter - 1)->value);
     }
     else
         cout << "run: not enough arguments" << endl;
@@ -197,8 +183,7 @@ void SyntaxAnalizer::equalSign(ASTNode* &node) // fix me
         && (accept(Lexema::STRING) || accept(Lexema::NAME))
        )
     {
-        node = new equalSignNode;
-        node->NodeData = equalSignData{(iter - 3)->value, (iter - 1)->value};
+        node = new equalSignNode((iter - 3)->value, (iter - 1)->value);
     }
     else
         cout << "equal: wrong token" << endl;

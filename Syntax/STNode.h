@@ -1,102 +1,83 @@
 #pragma once
-#include <vector>
-#include <iostream>
-#include <variant>
-#include <memory>
-
-using namespace std;
-
-struct ASTNode;
-struct cmdNode;
-struct rawNode;
-
-struct fullCmdData{ ASTNode* command; };
-
-struct equalSignData{ string varName, varValue; };
-
-struct cmdData{ ASTNode* cmd;};
-
-struct echoData{ ASTNode* raw; };
-
-struct runData{ string func, lib; };
-
-struct rawData{ vector<string> rawStr; };
-
-struct varSubstitutionData { string variable; };
+#include "STNodeData.h"
 
 struct ASTNode
 {
     virtual ~ASTNode() = default;
-    virtual void evaluate() {}; //reserved for later usage
-
+    virtual void print() = 0;
     variant<fullCmdData, equalSignData, cmdData, echoData, runData, rawData> NodeData;
 };
 
 struct equalSignNode : public ASTNode
 {
-    void evaluate() override;
+    equalSignNode(const string& varName, const string& varValue);
+    void print() override;
 };
 
 struct cmdNode : public ASTNode
 {
+    cmdNode();
     ~cmdNode() { delete get<cmdData>(NodeData).cmd;}
-    void evaluate() override;
+    void print() override;
 };
 
 struct fullCmdNode : public ASTNode
 {
+    fullCmdNode();
     ~fullCmdNode() { delete get<fullCmdData>(NodeData).command;}
-    void evaluate() override;
+    void print() override;
 };
 
 struct rawNode : public ASTNode
 {
-    void evaluate() override;
+    rawNode(const vector<string>& inp);
+    void print() override;
 };
 
 struct varSubstitutionNode : public ASTNode
 {
-    void evaluate() override {};
+    void print() override {};
 };
 
 struct echoNode : public ASTNode
 {
+    echoNode();
     ~echoNode() { delete get<echoData>(NodeData).raw;}
-    void evaluate() override;
+    void print() override;
 };
 
 struct argcNode : public ASTNode
 {
-    void evaluate() override;
+    void print() override;
 };
 
 struct argvNode : public ASTNode
 {
-    void evaluate() override;
+    void print() override;
 };
 
 struct envpNode : public ASTNode
 {
-    void evaluate() override;
+    void print() override;
 };
 
 struct quitNode : public ASTNode
 {
-    void evaluate() override;
+    void print() override;
 };
 
 struct helpNode : public ASTNode
 {
-    helpNode() {};
-    void evaluate() override;
+    void print() override;
 };
 
 struct varsNode : public ASTNode
 {
-    void evaluate() override;
+    void print() override;
 };
 
 struct runNode : public ASTNode
 {
-    void evaluate() override;
+    runNode(const string& lib, const string& func);
+    void print() override;
 };

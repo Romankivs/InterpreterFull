@@ -1,47 +1,67 @@
 #include "STNode.h"
 
-void fullCmdNode::evaluate()
+fullCmdNode::fullCmdNode()
+{
+    NodeData = fullCmdData{};
+}
+
+void fullCmdNode::print()
 {
     cout << "ASTree: (Type: fullCmd, Data: ";
-    get<fullCmdData>(NodeData).command->evaluate();
+    get<fullCmdData>(NodeData).command->print();
     cout << ")" << endl;
 }
 
-void cmdNode::evaluate()
+cmdNode::cmdNode()
+{
+    NodeData = cmdData{};
+}
+
+void cmdNode::print()
 {
     cout << "(Type: cmd, Data: ";
-    get<cmdData>(NodeData).cmd->evaluate();
+    get<cmdData>(NodeData).cmd->print();
     cout << ")";
 }
 
-void helpNode::evaluate()
+void helpNode::print()
 {
     cout << "(Type: help)";
 }
 
-void quitNode::evaluate()
+void quitNode::print()
 {
     cout << "(Type: quit)";
 }
 
-void argcNode::evaluate()
+void argcNode::print()
 {
     cout << "(Type: argc)";
 }
 
-void argvNode::evaluate()
+void argvNode::print()
 {
     cout << "(Type: argv)";
 }
 
-void echoNode::evaluate()
+echoNode::echoNode()
+{
+    NodeData = echoData{};
+}
+
+void echoNode::print()
 {
     cout << "(Type: echo, Data: ";
-    get<echoData>(NodeData).raw->evaluate();
+    get<echoData>(NodeData).raw->print();
     cout << ")";
 }
 
-void rawNode::evaluate()
+rawNode::rawNode(const vector<string>& inp)
+{
+    NodeData = rawData{inp};
+}
+
+void rawNode::print()
 {
     cout << "(Type: raw, Data: ";
     for (const auto& x : get<rawData>(NodeData).rawStr)
@@ -50,24 +70,34 @@ void rawNode::evaluate()
 }
 
 
-void envpNode::evaluate()
+void envpNode::print()
 {
     cout << "(Type: envp)";
 }
 
-void varsNode::evaluate()
+void varsNode::print()
 {
     cout << "(Type: vars)";
 }
 
-void runNode::evaluate()
+runNode::runNode(const string& func, const string& lib)
+{
+    NodeData = runData{lib, func};
+}
+
+void runNode::print()
 {
     cout << "(Type: run, Data: ";
     cout << get<runData>(NodeData).lib << ", " << get<runData>(NodeData).func;
     cout << ")";
 }
 
-void equalSignNode::evaluate()
+equalSignNode::equalSignNode(const string& varName, const string& varValue)
+{
+    NodeData = equalSignData{varValue, varName};
+}
+
+void equalSignNode::print()
 {
     cout << "(Type: equalSign, Data: ";
     cout << get<equalSignData>(NodeData).varName << ", " << get<equalSignData>(NodeData).varValue;
