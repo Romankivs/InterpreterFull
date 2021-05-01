@@ -5,16 +5,16 @@
 class SyntaxAnalizer
 {
     public:
-        SyntaxAnalizer(vector<Token>& anInput);
+        SyntaxAnalizer(const vector<Token>& anInput);
         ~SyntaxAnalizer();
-        void setInput(vector<Token>& inp);
+        void setInput(const vector<Token>& inp);
         void getNext();
 
         bool accept(Lexema type);
-        bool expect(Lexema type);
-
+        void error(const string msg);
         ASTNode* getResult();
         ASTNode* buildTree();
+        void printTree();
 
         void cmd(ASTNode* &node);
         void echo(ASTNode* &node);
@@ -33,6 +33,7 @@ class SyntaxAnalizer
         vector<Token> input;
         Token currentToken;
         ASTNode* resultRoot;
+        bool treeSuccessfulyConstructed;
         map<Lexema, void(SyntaxAnalizer::*)(ASTNode*&)> possibleCmds = {{Lexema::ECHO, &SyntaxAnalizer::echo},
                                                                       {Lexema::QUIT, &SyntaxAnalizer::quit},
                                                                       {Lexema::ARGC, &SyntaxAnalizer::argc},

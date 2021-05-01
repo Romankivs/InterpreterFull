@@ -6,8 +6,9 @@ int main()
 {
     State stateTmp;
     cout << "Min Levenstein distance between two states: " << stateTmp.minLevensteinDistanceBetweenStates() << endl;
+    //Lex analizer//
     LexAnalizer analizer;
-    analizer.setInputString("run func lib");
+    analizer.setInputString("");
     vector<Token> tokens;
     Token temp;
     while ((temp = analizer.getToken()).value != "")
@@ -16,14 +17,10 @@ int main()
     {
         cout << "Type: " << lexemaToString(tokens[i].type) << " Value: " << tokens[i].value << endl;
     }
-    //~~~~~~~~~~~~~~~~~~~//
+    //Syntax analizer//
     SyntaxAnalizer an(tokens);
     an.buildTree();
-    ASTNode* res = an.getResult();
-    if (res == nullptr)
-        cout << "No input" << endl;
-    else
-        res->print();
+    an.printTree();
 }
 
 
