@@ -8,7 +8,7 @@ int main()
     cout << "Min Levenstein distance between two states: " << stateTmp.minLevensteinDistanceBetweenStates() << endl;
     //Lex analizer//
     LexAnalizer analizer;
-    analizer.setInputString("   ");
+    analizer.setInputString("  echo mmmm ");
     vector<Token> tokens;
     Token temp;
     while ((temp = analizer.getToken()).value != "")
@@ -21,7 +21,6 @@ int main()
     SyntaxAnalizer an(tokens);
     an.buildTree();
     an.printTree();
-
 }
 
 
