@@ -39,13 +39,13 @@ private:
     AnalizerInput analizerInput;
     map<pair<char, State::PossibleStates>, void(LexAnalizer::*)()> functions;
     map<string, Lexema> possibleCmds = {{"echo", Lexema::ECHO},
-                                                                      {"quit", Lexema::QUIT},
-                                                                      {"argc", Lexema::ARGC},
-                                                                      {"argv", Lexema::ARGV},
-                                                                      {"envp", Lexema::ENVP},
-                                                                      {"help", Lexema::HELP},
-                                                                      {"vars", Lexema::VARS},
-                                                                      {"run", Lexema::RUN}};
+                                        {"quit", Lexema::QUIT},
+                                        {"argc", Lexema::ARGC},
+                                        {"argv", Lexema::ARGV},
+                                        {"envp", Lexema::ENVP},
+                                        {"help", Lexema::HELP},
+                                        {"vars", Lexema::VARS},
+                                        {"run", Lexema::RUN}};
 };
 
 

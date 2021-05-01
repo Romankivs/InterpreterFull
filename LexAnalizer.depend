@@ -63,7 +63,7 @@
 1619462213 source:/home/sviat/CbProjects/LexAnalizer3/src/LexAnalizer.cpp
 	"LexAnalizer.h"
 
-1619462135 /home/sviat/CbProjects/LexAnalizer3/include/LexAnalizer.h
+1619729081 /home/sviat/CbProjects/LexAnalizer3/include/LexAnalizer.h
 	<iostream>
 	"State.h"
 	"Additional.h"
@@ -75,7 +75,7 @@
 	<climits>
 	<vector>
 
-1619726443 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
+1619865116 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
 	"LexAnalizer.h"
 	"STNode.h"
 	"SyntaxAnalizer.h"
@@ -88,13 +88,13 @@
 	"STNode.h"
 	<map>
 
-1618320602 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
+1619729176 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1619728559 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1619865015 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
-1619728672 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
+1619728887 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
 	"STNode.h"
 
 1619725864 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNodeData.h

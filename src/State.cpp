@@ -20,9 +20,7 @@ int LevensteinDistance(const string& first, const string& second) // uses Wagner
             if (first[i] == second[j])
                 substitutionCost = firstArr[j];
             else
-
                 substitutionCost = firstArr[j] + 1;
-
             secondArr[j + 1] = min({deletionCost, insertionCost, substitutionCost});
         }
         for (int i = 0; i < secondLen + 1; ++i)

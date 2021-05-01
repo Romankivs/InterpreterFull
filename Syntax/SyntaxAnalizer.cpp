@@ -1,6 +1,6 @@
 #include "SyntaxAnalizer.h"
 
-SyntaxAnalizer::SyntaxAnalizer(vector<Token>& anInput) : input(anInput) {}
+SyntaxAnalizer::SyntaxAnalizer(vector<Token>& anInput) : input(anInput), resultRoot(nullptr) {}
 
 SyntaxAnalizer::~SyntaxAnalizer()
 {
@@ -16,7 +16,7 @@ void SyntaxAnalizer::getNext()
 
 bool SyntaxAnalizer::accept(Lexema type)
 {
-    cout << currentToken.type << ":" << type << endl;
+    //cout << currentToken.type << ":" << type << endl;
     if (currentToken.type == type)
     {
         getNext();
@@ -39,8 +39,10 @@ ASTNode* SyntaxAnalizer::buildTree()
 {
     iter = input.begin();
     currentToken = *iter;
-    resultRoot = new fullCmdNode;
     accept(Lexema::WHITESPACE);
+    if (accept(Lexema::END_OF_LINE)) // when input string is empty or only contains ws
+        return nullptr;
+    resultRoot = new fullCmdNode;
     cmd(get<fullCmdData>(resultRoot->NodeData).command);
     if (currentToken.type != Lexema::END_OF_LINE)
         cout << "error: endl not found or too many arguments" << endl;
@@ -69,12 +71,12 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
     case Lexema::RUN:
         run(get<cmdData>(node->NodeData).cmd); break;
     default:
-    if (accept(Lexema::NAME))
-    {
-        equalSign(get<cmdData>(node->NodeData).cmd);
-    }
-    else
-        cout << "syntax error: command not found" << endl;
+        if (accept(Lexema::NAME))
+        {
+            equalSign(get<cmdData>(node->NodeData).cmd);
+        }
+        else
+            cout << "syntax error: command not found" << endl;
     }
     /*if (currentToken.type == Lexema::ECHO)  // switch??
         echo(get<cmdData>(node->NodeData).cmd);

@@ -38,6 +38,7 @@
 		</Compiler>
 		<Unit filename="Syntax/STNode.cpp" />
 		<Unit filename="Syntax/STNode.h" />
+		<Unit filename="Syntax/STNodeData.h" />
 		<Unit filename="Syntax/SyntaxAnalizer.cpp" />
 		<Unit filename="Syntax/SyntaxAnalizer.h" />
 		<Unit filename="include/Additional.h" />
