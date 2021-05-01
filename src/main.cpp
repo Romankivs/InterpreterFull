@@ -21,6 +21,7 @@ int main()
     SyntaxAnalizer an(tokens);
     an.buildTree();
     an.printTree();
+
 }
 
 
