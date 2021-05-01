@@ -36,17 +36,13 @@ ASTNode* SyntaxAnalizer::buildTree()
     iter = input.begin();
     currentToken = *iter;
     treeSuccessfulyConstructed = true;
+    resultRoot = new fullCmdNode;
 
     accept(Lexema::WHITESPACE);
-    if (accept(Lexema::END_OF_LINE)) // when input string is empty or only contains ws
-        return nullptr;
-    resultRoot = new fullCmdNode;
     cmd(get<fullCmdData>(resultRoot->NodeData).command);
     if (currentToken.type != Lexema::END_OF_LINE)
         error("fullCmd: endl not found or too many tokens");
-    if (!treeSuccessfulyConstructed)
-        return nullptr;
-    return resultRoot;
+    return getResult();
 }
 
 void SyntaxAnalizer::cmd(ASTNode* &node)
