@@ -33,8 +33,10 @@ LexAnalizer::LexAnalizer() // Constructor initialized automatas table
     functions[make_pair('\0', State::INSIDE_QUOTATION_MARKS)] = &LexAnalizer::endQuotationMarks;
     functions[make_pair('\0', State::WAITING)] = &LexAnalizer::endLine;
     functions[make_pair('\0', State::WHITESPACE)] = &LexAnalizer::endLine;
+    functions[make_pair('\0', State::INSIDE_QUOTATION_MARKS)] = &LexAnalizer::endLine;
     functions[make_pair('\n', State::WAITING)] = &LexAnalizer::endLine;
     functions[make_pair('\n', State::WHITESPACE)] = &LexAnalizer::endLine;
+    functions[make_pair('\n', State::INSIDE_QUOTATION_MARKS)] = &LexAnalizer::endLine;
     functions[make_pair(' ', State::WAITING)] = &LexAnalizer::beginWhitespace;
     functions[make_pair(' ', State::WHITESPACE)] = &LexAnalizer::continueSequence;
     functions[make_pair('$', State::WAITING)] = &LexAnalizer::dollarSign;
