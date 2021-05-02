@@ -12,14 +12,16 @@ struct rawNode;
 
 struct fullCmdData{ ASTNode* command; };
 
-struct equalSignData{ string varName, varValue; };
+struct equalSignData{ ASTNode* varName, *varValue; };
 
 struct cmdData{ ASTNode* cmd;};
 
 struct echoData{ ASTNode* raw; };
 
-struct runData{ string func, lib; };
+struct runData{ ASTNode* func, *lib; };
 
-struct rawData{ vector<string> rawStr; };
+struct rawData{ vector<ASTNode*> rawStr; };
 
 struct varSubstitutionData { string variable; };
+
+struct stringData{ string value; };

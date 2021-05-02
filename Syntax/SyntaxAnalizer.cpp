@@ -131,7 +131,7 @@ void SyntaxAnalizer::varSubstitution(ASTNode* &node)
     getNext(); // skip "$"
     accept(Lexema::OPEN_BRACE);
     if (accept(Lexema::STRING) || accept(Lexema::NAME))
-        node = new varSubstitutionNode(currentToken.value);
+        node = new varSubstitutionNode((iter - 1)->value);
     else
         error("varSubstitution: no value to substitute");
     accept(Lexema::CLOSE_BRACE);

@@ -56,7 +56,7 @@ void echoNode::print()
     cout << ")";
 }
 
-rawNode::rawNode(const vector<string>& inp)
+rawNode::rawNode(const vector<ASTNode*> inp)
 {
     NodeData = rawData{inp};
 }
@@ -81,6 +81,18 @@ void varSubstitutionNode::print()
     cout << ")";
 }
 
+stringNode::stringNode(const string& inpStr)
+{
+    NodeData = stringData{inpStr};
+}
+
+void stringNode::print()
+{
+    cout << "(Type: string, Data: ";
+    cout << get<stringData>(NodeData).value;
+    cout << ")";
+}
+
 void envpNode::print()
 {
     cout << "(Type: envp)";
@@ -91,7 +103,7 @@ void varsNode::print()
     cout << "(Type: vars)";
 }
 
-runNode::runNode(const string& func, const string& lib)
+runNode::runNode(ASTNode* const func, ASTNode* const lib)
 {
     NodeData = runData{lib, func};
 }
@@ -103,7 +115,7 @@ void runNode::print()
     cout << ")";
 }
 
-equalSignNode::equalSignNode(const string& varName, const string& varValue)
+equalSignNode::equalSignNode(ASTNode* const varName, ASTNode* const varValue)
 {
     NodeData = equalSignData{varValue, varName};
 }

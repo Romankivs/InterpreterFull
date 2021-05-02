@@ -5,12 +5,12 @@ struct ASTNode
 {
     virtual ~ASTNode() = default;
     virtual void print() = 0;
-    variant<fullCmdData, equalSignData, cmdData, echoData, runData, rawData, varSubstitutionData> NodeData;
+    variant<fullCmdData, equalSignData, cmdData, echoData, runData, rawData, varSubstitutionData, stringData> NodeData;
 };
 
 struct equalSignNode : public ASTNode
 {
-    equalSignNode(const string& varName, const string& varValue);
+    equalSignNode(ASTNode* const varName, ASTNode* const varValue);
     void print() override;
 };
 
@@ -30,13 +30,19 @@ struct fullCmdNode : public ASTNode
 
 struct rawNode : public ASTNode
 {
-    rawNode(const vector<string>& inp);
+    rawNode(const vector<ASTNode*> inp);
     void print() override;
 };
 
 struct varSubstitutionNode : public ASTNode
 {
     varSubstitutionNode(const string& varName);
+    void print() override;
+};
+
+struct stringNode : public ASTNode
+{
+    stringNode(const string& inpStr);
     void print() override;
 };
 
@@ -79,6 +85,6 @@ struct varsNode : public ASTNode
 
 struct runNode : public ASTNode
 {
-    runNode(const string& lib, const string& func);
+    runNode(ASTNode* const func, ASTNode* const lib);
     void print() override;
 };

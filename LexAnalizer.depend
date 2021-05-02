@@ -80,7 +80,7 @@
 	"STNode.h"
 	"SyntaxAnalizer.h"
 
-1619945468 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
+1619948149 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
 	"STNodeData.h"
 
 1619868678 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
@@ -91,13 +91,13 @@
 1619729176 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1619945696 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1619946970 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
 1619945453 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
 	"STNode.h"
 
-1619725864 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNodeData.h
+1619947557 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNodeData.h
 	<vector>
 	<iostream>
 	<variant>
