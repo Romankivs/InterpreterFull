@@ -120,10 +120,21 @@ void SyntaxAnalizer::raw(ASTNode* &node)
     vector<string> result;
     while (currentToken.type != Lexema::END_OF_LINE)
     {
-        result.push_back(iter->value);
+        result.push_back(currentToken.value);
         getNext();
     }
     node = new rawNode(result);
+}
+
+void SyntaxAnalizer::varSubstitution(ASTNode* &node)
+{
+    getNext(); // skip "$"
+    accept(Lexema::OPEN_BRACE);
+    if (accept(Lexema::STRING) || accept(Lexema::NAME))
+        node = new varSubstitutionNode(currentToken.value);
+    else
+        error("varSubstitution: no value to substitute");
+    accept(Lexema::CLOSE_BRACE);
 }
 
 void SyntaxAnalizer::quit(ASTNode* &node)

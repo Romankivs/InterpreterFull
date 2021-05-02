@@ -5,7 +5,7 @@ struct ASTNode
 {
     virtual ~ASTNode() = default;
     virtual void print() = 0;
-    variant<fullCmdData, equalSignData, cmdData, echoData, runData, rawData> NodeData;
+    variant<fullCmdData, equalSignData, cmdData, echoData, runData, rawData, varSubstitutionData> NodeData;
 };
 
 struct equalSignNode : public ASTNode
@@ -36,7 +36,8 @@ struct rawNode : public ASTNode
 
 struct varSubstitutionNode : public ASTNode
 {
-    void print() override {};
+    varSubstitutionNode(const string& varName);
+    void print() override;
 };
 
 struct echoNode : public ASTNode
