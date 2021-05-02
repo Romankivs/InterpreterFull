@@ -34,25 +34,6 @@ void cmdNode::print()
     cout << ")";
 }
 
-void helpNode::print()
-{
-    cout << "(Type: help)";
-}
-
-void quitNode::print()
-{
-    cout << "(Type: quit)";
-}
-
-void argcNode::print()
-{
-    cout << "(Type: argc)";
-}
-
-void argvNode::print()
-{
-    cout << "(Type: argv)";
-}
 
 echoNode::echoNode()
 {
@@ -171,3 +152,24 @@ void equalSignNode::print()
     get<equalSignData>(NodeData).varValue->print();
     cout << ")";
 }
+
+void helpNode::print()
+{
+    cout << "(Type: help)";
+}
+
+void quitNode::print()
+{
+    cout << "(Type: quit)";
+}
+
+void argcNode::print()
+{
+    cout << "(Type: argc)";
+}
+
+void argvNode::print()
+{
+    cout << "(Type: argv)";
+}
+

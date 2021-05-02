@@ -1,7 +1,7 @@
 #pragma once
 #include "Additional.h"
 #include "STNode.h"
-#include <map>
+
 class SyntaxAnalizer
 {
     public:
@@ -34,14 +34,6 @@ class SyntaxAnalizer
         Token currentToken;
         ASTNode* resultRoot;
         bool treeSuccessfulyConstructed;
-        map<Lexema, void(SyntaxAnalizer::*)(ASTNode*&)> possibleCmds = {{Lexema::ECHO, &SyntaxAnalizer::echo},
-                                                                      {Lexema::QUIT, &SyntaxAnalizer::quit},
-                                                                      {Lexema::ARGC, &SyntaxAnalizer::argc},
-                                                                      {Lexema::ARGV, &SyntaxAnalizer::argv},
-                                                                      {Lexema::ENVP, &SyntaxAnalizer::envp},
-                                                                      {Lexema::HELP, &SyntaxAnalizer::help},
-                                                                      {Lexema::VARS, &SyntaxAnalizer::vars},
-                                                                      {Lexema::RUN, &SyntaxAnalizer::run}};
 };
 
 

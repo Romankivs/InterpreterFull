@@ -36,8 +36,8 @@ ASTNode* SyntaxAnalizer::buildTree()
     iter = input.begin();
     currentToken = *iter;
     treeSuccessfulyConstructed = true;
-    resultRoot = new fullCmdNode;
 
+    resultRoot = new fullCmdNode;
     accept(Lexema::WHITESPACE);
     cmd(get<fullCmdData>(resultRoot->NodeData).command);
     if (currentToken.type != Lexema::END_OF_LINE)
@@ -66,43 +66,11 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
         vars(get<cmdData>(node->NodeData).cmd); break;
     case Lexema::RUN:
         run(get<cmdData>(node->NodeData).cmd); break;
-    default:
-        if (currentToken.type == Lexema::NAME)
-        {
-            equalSign(get<cmdData>(node->NodeData).cmd);
-        }
-        else
-        {
-            error("cmd: command not found");
-        }
-    }
-    /*if (currentToken.type == Lexema::ECHO)  // switch??
-        echo(get<cmdData>(node->NodeData).cmd);
-    else if (currentToken.type == Lexema::QUIT)
-        quit(get<cmdData>(node->NodeData).cmd);
-    else if (currentToken.type == Lexema::ARGC)
-        argc(get<cmdData>(node->NodeData).cmd);
-    else if (currentToken.type == Lexema::ARGV)
-        argv(get<cmdData>(node->NodeData).cmd);
-    else if (currentToken.type == Lexema::ENVP)
-        envp(get<cmdData>(node->NodeData).cmd);
-    else if (currentToken.type == Lexema::HELP)
-        help(get<cmdData>(node->NodeData).cmd);
-    else if (currentToken.type == Lexema::VARS)
-        vars(get<cmdData>(node->NodeData).cmd);
-    else if (currentToken.type == Lexema::RUN)
-        run(get<cmdData>(node->NodeData).cmd);
-    if (possibleCmds.contains(currentToken.type))
-    {
-        (*this.*possibleCmds[currentToken.type])(get<cmdData>(node->NodeData).cmd);
-    }
-    else if (accept(Lexema::NAME))
-    {
+    case Lexema::NAME:
         equalSign(get<cmdData>(node->NodeData).cmd);
+    default:
+        error("cmd: command not found");
     }
-    else
-        cout << "syntax error: command not found" << endl;*/
-
 }
 
 void SyntaxAnalizer::echo(ASTNode* &node) //fix if not enough args
@@ -187,27 +155,6 @@ void SyntaxAnalizer::equalSign(ASTNode* &node)
         error("equal: wrong token");
 }
 
-void SyntaxAnalizer::setInput(const vector<Token>& inp)
-{
-    input = inp;
-}
-
-ASTNode* SyntaxAnalizer::getResult()
-{
-    if (!treeSuccessfulyConstructed)
-        return nullptr;
-    return resultRoot;
-}
-
-void SyntaxAnalizer::printTree()
-{
-    if (getResult() == nullptr)
-        cout << "printTree: tree wasn`t constructed, printing is not possible" << endl;
-    else
-        resultRoot->print();
-}
-
-
 void SyntaxAnalizer::quit(ASTNode* &node)
 {
     getNext();
@@ -243,3 +190,26 @@ void SyntaxAnalizer::vars(ASTNode* &node)
     getNext();
     node = new varsNode;
 }
+
+void SyntaxAnalizer::setInput(const vector<Token>& inp)
+{
+    input = inp;
+}
+
+ASTNode* SyntaxAnalizer::getResult()
+{
+    if (!treeSuccessfulyConstructed)
+        return nullptr;
+    return resultRoot;
+}
+
+void SyntaxAnalizer::printTree()
+{
+    if (getResult() == nullptr)
+        cout << "printTree: tree wasn`t constructed, printing is not possible" << endl;
+    else
+        resultRoot->print();
+}
+
+
+
