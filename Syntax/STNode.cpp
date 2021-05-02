@@ -65,7 +65,7 @@ void rawNode::print()
 {
     cout << "(Type: raw, Data: ";
     for (const auto& x : get<rawData>(NodeData).rawStr)
-        cout << x;
+        x->print();
     cout << ")";
 }
 
@@ -111,7 +111,9 @@ runNode::runNode(ASTNode* const func, ASTNode* const lib)
 void runNode::print()
 {
     cout << "(Type: run, Data: ";
-    cout << get<runData>(NodeData).lib << ", " << get<runData>(NodeData).func;
+    get<runData>(NodeData).func->print();
+    cout << ", ";
+    get<runData>(NodeData).lib->print();
     cout << ")";
 }
 
@@ -123,6 +125,8 @@ equalSignNode::equalSignNode(ASTNode* const varName, ASTNode* const varValue)
 void equalSignNode::print()
 {
     cout << "(Type: equalSign, Data: ";
-    cout << get<equalSignData>(NodeData).varName << ", " << get<equalSignData>(NodeData).varValue;
+    get<equalSignData>(NodeData).varName->print();
+    cout << ", ";
+    get<equalSignData>(NodeData).varValue->print();
     cout << ")";
 }

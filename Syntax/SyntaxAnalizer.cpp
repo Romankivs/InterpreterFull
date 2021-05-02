@@ -117,10 +117,10 @@ void SyntaxAnalizer::echo(ASTNode* &node) //fix if not enough args
 
 void SyntaxAnalizer::raw(ASTNode* &node)
 {
-    vector<string> result;
+    vector<ASTNode*> result;
     while (currentToken.type != Lexema::END_OF_LINE)
     {
-        result.push_back(currentToken.value);
+        result.push_back(new stringNode(currentToken.value));
         getNext();
     }
     node = new rawNode(result);
@@ -181,7 +181,7 @@ void SyntaxAnalizer::run(ASTNode* &node)
         && (accept(Lexema::WHITESPACE))
         && (accept(Lexema::STRING) || accept(Lexema::NAME)))
     {
-        node = new runNode((iter - 3)->value, (iter - 1)->value);
+        node = new runNode(new stringNode((iter - 3)->value), new stringNode((iter - 1)->value));
     }
     else
         error("run: not enough or invalid arguments");
@@ -193,7 +193,7 @@ void SyntaxAnalizer::equalSign(ASTNode* &node)
         && (accept(Lexema::STRING) || accept(Lexema::NAME))
        )
     {
-        node = new equalSignNode((iter - 3)->value, (iter - 1)->value);
+        node = new equalSignNode(new stringNode((iter - 3)->value), new stringNode((iter - 1)->value));
     }
     else
         error("equal: wrong token");
