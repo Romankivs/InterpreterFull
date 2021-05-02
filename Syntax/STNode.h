@@ -11,31 +11,34 @@ struct ASTNode
 struct equalSignNode : public ASTNode
 {
     equalSignNode(ASTNode* const varName, ASTNode* const varValue);
+    ~equalSignNode();
     void print() override;
 };
 
 struct cmdNode : public ASTNode
 {
     cmdNode();
-    ~cmdNode() { delete get<cmdData>(NodeData).cmd;}
+    ~cmdNode();
     void print() override;
 };
 
 struct fullCmdNode : public ASTNode
 {
     fullCmdNode();
-    ~fullCmdNode() { delete get<fullCmdData>(NodeData).command;}
+    ~fullCmdNode();
     void print() override;
 };
 
 struct rawNode : public ASTNode
 {
     rawNode(const vector<ASTNode*> inp);
+    ~rawNode();
     void print() override;
 };
 
 struct varSubstitutionNode : public ASTNode
 {
+    varSubstitutionNode();
     varSubstitutionNode(const string& varName);
     void print() override;
 };
@@ -49,7 +52,7 @@ struct stringNode : public ASTNode
 struct echoNode : public ASTNode
 {
     echoNode();
-    ~echoNode() { delete get<echoData>(NodeData).raw;}
+    ~echoNode();
     void print() override;
 };
 
@@ -85,6 +88,8 @@ struct varsNode : public ASTNode
 
 struct runNode : public ASTNode
 {
+    runNode();
+    ~runNode();
     runNode(ASTNode* const func, ASTNode* const lib);
     void print() override;
 };

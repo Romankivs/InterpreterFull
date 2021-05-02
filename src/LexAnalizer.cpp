@@ -18,7 +18,7 @@ LexAnalizer::LexAnalizer() // Constructor initialized automatas table
             functions[make_pair(c, State::NAME_S)] = &LexAnalizer::beginUnquotatedString;
     }
     // Special characters that end Name and UnquotatedString lexems //
-    vector<char> specialCharacters = { '\0', ' ', '$', '{', '}', '=' };
+    vector<char> specialCharacters = { '\0', ' ', '$', '{', '}', '=', '\n' };
     for (auto c : specialCharacters)
     {
         functions[make_pair(c, State::OUTSIDE_QUOTATION_MARKS)] = &LexAnalizer::endUnquotatedString;
@@ -29,14 +29,15 @@ LexAnalizer::LexAnalizer() // Constructor initialized automatas table
     functions[make_pair('\"', State::OUTSIDE_QUOTATION_MARKS)] = &LexAnalizer::beginQuotationMarks;
     functions[make_pair('\"', State::NAME_S)] = &LexAnalizer::beginQuotationMarks;
     functions[make_pair('\"', State::WAITING)] = &LexAnalizer::beginQuotationMarks;
+    // endl characters //
+    vector<char> endlChars = {'\0', '\n'};
+    for (auto c : endlChars)
+    {
+        functions[make_pair(c, State::INSIDE_QUOTATION_MARKS)] = &LexAnalizer::endQuotationMarks;
+        functions[make_pair(c, State::WAITING)] = &LexAnalizer::endLine;
+        functions[make_pair(c, State::WHITESPACE)] = &LexAnalizer::endLine;
+    }
     // Special characters unique functions//
-    functions[make_pair('\0', State::INSIDE_QUOTATION_MARKS)] = &LexAnalizer::endQuotationMarks;
-    functions[make_pair('\0', State::WAITING)] = &LexAnalizer::endLine;
-    functions[make_pair('\0', State::WHITESPACE)] = &LexAnalizer::endLine;
-    functions[make_pair('\0', State::INSIDE_QUOTATION_MARKS)] = &LexAnalizer::endLine;
-    functions[make_pair('\n', State::WAITING)] = &LexAnalizer::endLine;
-    functions[make_pair('\n', State::WHITESPACE)] = &LexAnalizer::endLine;
-    functions[make_pair('\n', State::INSIDE_QUOTATION_MARKS)] = &LexAnalizer::endLine;
     functions[make_pair(' ', State::WAITING)] = &LexAnalizer::beginWhitespace;
     functions[make_pair(' ', State::WHITESPACE)] = &LexAnalizer::continueSequence;
     functions[make_pair('$', State::WAITING)] = &LexAnalizer::dollarSign;
@@ -110,6 +111,8 @@ void LexAnalizer::endQuotationMarks()
 {
     currentState = State::WAITING;
     FinishTokenCreation(Lexema::STRING);
+    if (analizerInput.input[analizerInput.index] != '\"') // if terminated
+        analizerInput.index -= 1;
 }
 
 void LexAnalizer::beginName()

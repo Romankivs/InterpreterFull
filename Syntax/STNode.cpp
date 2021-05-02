@@ -5,6 +5,11 @@ fullCmdNode::fullCmdNode()
     NodeData = fullCmdData{};
 }
 
+fullCmdNode::~fullCmdNode()
+{
+    delete get<fullCmdData>(NodeData).command;
+}
+
 void fullCmdNode::print()
 {
     cout << "ASTree: (Type: fullCmd, Data: ";
@@ -15,6 +20,11 @@ void fullCmdNode::print()
 cmdNode::cmdNode()
 {
     NodeData = cmdData{};
+}
+
+cmdNode::~cmdNode()
+{
+    delete get<cmdData>(NodeData).cmd;
 }
 
 void cmdNode::print()
@@ -49,6 +59,11 @@ echoNode::echoNode()
     NodeData = echoData{};
 }
 
+echoNode::~echoNode()
+{
+    delete get<echoData>(NodeData).raw;
+}
+
 void echoNode::print()
 {
     cout << "(Type: echo, Data: ";
@@ -61,12 +76,23 @@ rawNode::rawNode(const vector<ASTNode*> inp)
     NodeData = rawData{inp};
 }
 
+rawNode::~rawNode()
+{
+    for (auto x : get<rawData>(NodeData).rawStr)
+        delete x;
+}
+
 void rawNode::print()
 {
     cout << "(Type: raw, Data: ";
     for (const auto& x : get<rawData>(NodeData).rawStr)
         x->print();
     cout << ")";
+}
+
+varSubstitutionNode::varSubstitutionNode()
+{
+    NodeData = varSubstitutionData{};
 }
 
 varSubstitutionNode::varSubstitutionNode(const string& varName)
@@ -103,11 +129,20 @@ void varsNode::print()
     cout << "(Type: vars)";
 }
 
+runNode::runNode()
+{
+    NodeData = runData{};
+}
+
 runNode::runNode(ASTNode* const func, ASTNode* const lib)
 {
     NodeData = runData{lib, func};
 }
 
+runNode::~runNode()
+{
+    delete get<runData>(NodeData).func; delete get<runData>(NodeData).lib;
+}
 void runNode::print()
 {
     cout << "(Type: run, Data: ";
@@ -119,7 +154,13 @@ void runNode::print()
 
 equalSignNode::equalSignNode(ASTNode* const varName, ASTNode* const varValue)
 {
-    NodeData = equalSignData{varValue, varName};
+    NodeData = equalSignData{varName, varValue};
+}
+
+equalSignNode::~equalSignNode()
+{
+    delete get<equalSignData>(NodeData).varName;
+    delete get<equalSignData>(NodeData).varValue;
 }
 
 void equalSignNode::print()
