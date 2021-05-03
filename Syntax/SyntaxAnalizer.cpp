@@ -78,20 +78,6 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
     }
 }
 
-void SyntaxAnalizer::varSubstitution(ASTNode* &node)
-{
-    accept(Lexema::OPEN_BRACE);
-    if (curTokEqual(Lexema::STRING) || curTokEqual(Lexema::NAME))
-    {
-        node = new varSubstitutionNode(currentToken.value);
-        getNext();
-    }
-    else
-        error("varSubstitution: no value to substitute");
-    accept(Lexema::CLOSE_BRACE);
-}
-
-
 void SyntaxAnalizer::run(ASTNode* &node)
 {
     getNext(); // skip "run"
@@ -139,7 +125,7 @@ void SyntaxAnalizer::equalSign(ASTNode* &node)
         error("equal: wrong token");
 }
 
-void SyntaxAnalizer::echo(ASTNode* &node) //fix if not enough args
+void SyntaxAnalizer::echo(ASTNode* &node)
 {
     node = new echoNode;
     getNext(); // skip "echo"
@@ -167,6 +153,19 @@ void SyntaxAnalizer::raw(ASTNode* &node)
         }
     }
     node = new rawNode(result);
+}
+
+void SyntaxAnalizer::varSubstitution(ASTNode* &node)
+{
+    accept(Lexema::OPEN_BRACE);
+    if (curTokEqual(Lexema::STRING) || curTokEqual(Lexema::NAME))
+    {
+        node = new varSubstitutionNode(currentToken.value);
+        getNext();
+    }
+    else
+        error("varSubstitution: no value to substitute");
+    accept(Lexema::CLOSE_BRACE);
 }
 
 void SyntaxAnalizer::quit(ASTNode* &node)
