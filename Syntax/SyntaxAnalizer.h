@@ -1,13 +1,13 @@
 #pragma once
 #include "Additional.h"
 #include "STNode.h"
+#include "LexAnalizer.h"
 
 class SyntaxAnalizer
 {
     public:
-        SyntaxAnalizer(const vector<Token>& anInput);
+        SyntaxAnalizer(LexAnalizer* const inpLex);
         ~SyntaxAnalizer();
-        void setInput(const vector<Token>& inp);
         void getNext();
 
         bool accept(Lexema type);
@@ -30,8 +30,8 @@ class SyntaxAnalizer
         void raw(ASTNode* &node);
         void varSubstitution(ASTNode* &node);
     private:
-        vector<Token>::iterator iter;
-        vector<Token> input;
+        size_t index;
+        LexAnalizer* inputSrc;
         Token currentToken;
         ASTNode* resultRoot;
         bool treeSuccessfulyConstructed;

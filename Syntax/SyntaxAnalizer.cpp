@@ -1,7 +1,7 @@
 #include "SyntaxAnalizer.h"
 
-SyntaxAnalizer::SyntaxAnalizer(const vector<Token>& anInput) :
-    input(anInput), resultRoot(nullptr), treeSuccessfulyConstructed(false) {}
+SyntaxAnalizer::SyntaxAnalizer(LexAnalizer* const inpLex) :
+    inputSrc(inpLex), resultRoot(nullptr), treeSuccessfulyConstructed(false) {}
 
 SyntaxAnalizer::~SyntaxAnalizer()
 {
@@ -10,9 +10,9 @@ SyntaxAnalizer::~SyntaxAnalizer()
 
 void SyntaxAnalizer::getNext()
 {
-    if ((iter + 1) != input.end())
-        iter +=1;
-    currentToken = *iter;
+    currentToken = inputSrc->getToken();
+    cout << "Type: " << lexemaToString(currentToken.type) << " Value: " << currentToken.value << endl;
+    ++index;
 }
 
 bool SyntaxAnalizer::accept(Lexema type)
@@ -32,14 +32,14 @@ bool SyntaxAnalizer::curTokEqual(Lexema type)
 
 void SyntaxAnalizer::error(const string msg)
 {
-    cout << msg << " (Index: " << (iter - input.begin()) << ")" << endl;
+    cout << msg << " (Index: " << index << ")" << endl;
     treeSuccessfulyConstructed = false;
 }
 
 ASTNode* SyntaxAnalizer::buildTree()
 {
-    iter = input.begin();
-    currentToken = *iter;
+    index = 0;
+    getNext();
     treeSuccessfulyConstructed = true;
 
     resultRoot = new fullCmdNode;
@@ -161,8 +161,10 @@ void SyntaxAnalizer::raw(ASTNode* &node)
             result.push_back(res);
         }
         else
+        {
             result.push_back(new stringNode(currentToken.value));
-        getNext();
+            getNext();
+        }
     }
     node = new rawNode(result);
 }
@@ -201,11 +203,6 @@ void SyntaxAnalizer::vars(ASTNode* &node)
 {
     getNext();
     node = new varsNode;
-}
-
-void SyntaxAnalizer::setInput(const vector<Token>& inp)
-{
-    input = inp;
 }
 
 ASTNode* SyntaxAnalizer::getResult()
