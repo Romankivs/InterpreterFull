@@ -25,6 +25,11 @@ bool SyntaxAnalizer::accept(Lexema type)
     return false;
 }
 
+bool SyntaxAnalizer::curTokEqual(Lexema type)
+{
+    return (currentToken.type == type);
+}
+
 void SyntaxAnalizer::error(const string msg)
 {
     cout << msg << " (Index: " << (iter - input.begin()) << ")" << endl;
@@ -67,10 +72,71 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
     case Lexema::RUN:
         run(get<cmdData>(node->NodeData).cmd); break;
     case Lexema::NAME:
-        equalSign(get<cmdData>(node->NodeData).cmd);
+        equalSign(get<cmdData>(node->NodeData).cmd); break;
     default:
         error("cmd: command not found");
     }
+}
+
+void SyntaxAnalizer::varSubstitution(ASTNode* &node)
+{
+    accept(Lexema::OPEN_BRACE);
+    if (curTokEqual(Lexema::STRING) || curTokEqual(Lexema::NAME))
+    {
+        node = new varSubstitutionNode(currentToken.value);
+        getNext();
+    }
+    else
+        error("varSubstitution: no value to substitute");
+    accept(Lexema::CLOSE_BRACE);
+}
+
+
+void SyntaxAnalizer::run(ASTNode* &node)
+{
+    getNext(); // skip "run"
+    bool success = accept(Lexema::WHITESPACE);
+    node = new runNode();
+    if (curTokEqual(Lexema::STRING) || curTokEqual(Lexema::NAME))
+    {
+        get<runData>(node->NodeData).func = new stringNode(currentToken.value);
+        getNext();
+    }
+    else if (accept(Lexema::DOLLAR_SIGN))
+        varSubstitution(get<runData>(node->NodeData).func);
+    else
+        success = false;
+    success = accept(Lexema::WHITESPACE);
+    if (curTokEqual(Lexema::STRING) || curTokEqual(Lexema::NAME))
+    {
+        get<runData>(node->NodeData).lib = new stringNode(currentToken.value);
+        getNext();
+    }
+    else if (accept(Lexema::DOLLAR_SIGN))
+        varSubstitution(get<runData>(node->NodeData).lib);
+    else
+        success = false;
+    if (!success)
+        error("run: not enough or invalid arguments");
+}
+
+void SyntaxAnalizer::equalSign(ASTNode* &node)
+{
+    node = new equalSignNode(new stringNode(currentToken.value), nullptr);
+    getNext();
+    if (!accept(Lexema::EQUAL_SIGN))
+        error("cmd: command not found");
+    if (curTokEqual(Lexema::STRING) || curTokEqual(Lexema::NAME))
+    {
+        get<equalSignData>(node->NodeData).varValue = new stringNode(currentToken.value);
+        getNext();
+    }
+    else if (accept(Lexema::DOLLAR_SIGN))
+    {
+        varSubstitution(get<equalSignData>(node->NodeData).varValue);
+    }
+    else
+        error("equal: wrong token");
 }
 
 void SyntaxAnalizer::echo(ASTNode* &node) //fix if not enough args
@@ -99,60 +165,6 @@ void SyntaxAnalizer::raw(ASTNode* &node)
         getNext();
     }
     node = new rawNode(result);
-}
-
-void SyntaxAnalizer::varSubstitution(ASTNode* &node)
-{
-    accept(Lexema::OPEN_BRACE);
-    if (accept(Lexema::STRING) || accept(Lexema::NAME))
-        node = new varSubstitutionNode((iter - 1)->value);
-    else
-        error("varSubstitution: no value to substitute");
-    accept(Lexema::CLOSE_BRACE);
-}
-
-
-void SyntaxAnalizer::run(ASTNode* &node)
-{
-    getNext(); // skip "run"
-    bool success = accept(Lexema::WHITESPACE);
-    node = new runNode();
-    if (accept(Lexema::STRING) || accept(Lexema::NAME))
-    {
-        get<runData>(node->NodeData).func = new stringNode((iter - 1)->value);
-    }
-    else if (accept(Lexema::DOLLAR_SIGN))
-        varSubstitution(get<runData>(node->NodeData).func);
-    else
-        success = false;
-    success = accept(Lexema::WHITESPACE);
-    if (accept(Lexema::STRING) || accept(Lexema::NAME))
-    {
-        get<runData>(node->NodeData).lib = new stringNode((iter - 1)->value);
-    }
-    else if (accept(Lexema::DOLLAR_SIGN))
-        varSubstitution(get<runData>(node->NodeData).lib);
-    else
-        success = false;
-    if (!success)
-        error("run: not enough or invalid arguments");
-}
-
-void SyntaxAnalizer::equalSign(ASTNode* &node)
-{
-    getNext();
-    if (!accept(Lexema::EQUAL_SIGN))
-        error("cmd: command not found");
-    if (accept(Lexema::STRING) || accept(Lexema::NAME))
-        node = new equalSignNode(new stringNode((iter - 3)->value), new stringNode((iter - 1)->value));
-    else if (accept(Lexema::DOLLAR_SIGN))
-    {
-        ASTNode* tmp;
-        varSubstitution(tmp);
-        node = new equalSignNode(new stringNode((iter - 3)->value), tmp);
-    }
-    else
-        error("equal: wrong token");
 }
 
 void SyntaxAnalizer::quit(ASTNode* &node)

@@ -11,6 +11,7 @@ class SyntaxAnalizer
         void getNext();
 
         bool accept(Lexema type);
+        bool curTokEqual(Lexema type);
         void error(const string msg);
         ASTNode* getResult();
         ASTNode* buildTree();
