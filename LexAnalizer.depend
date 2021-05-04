@@ -54,52 +54,175 @@
 	<vector>
 	<iostream>
 
-1619462106 source:/home/sviat/CbProjects/LexAnalizer3/src/Additional.cpp
+1620006266 source:/home/sviat/CbProjects/LexAnalizer3/src/Additional.cpp
 	"Additional.h"
 
-1619462107 /home/sviat/CbProjects/LexAnalizer3/include/Additional.h
+1620006266 /home/sviat/CbProjects/LexAnalizer3/include/Additional.h
 	<string>
 
-1619960244 source:/home/sviat/CbProjects/LexAnalizer3/src/LexAnalizer.cpp
+1620006266 source:/home/sviat/CbProjects/LexAnalizer3/src/LexAnalizer.cpp
 	"LexAnalizer.h"
 
-1619729081 /home/sviat/CbProjects/LexAnalizer3/include/LexAnalizer.h
+1620006266 /home/sviat/CbProjects/LexAnalizer3/include/LexAnalizer.h
 	<iostream>
 	"State.h"
 	"Additional.h"
 
-1619357271 /home/sviat/CbProjects/LexAnalizer3/include/State.h
+1620006266 /home/sviat/CbProjects/LexAnalizer3/include/State.h
 	<string>
 	<map>
 	<algorithm>
 	<climits>
 	<vector>
 
-1620031848 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
+1620154766 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
 	"LexAnalizer.h"
 	"STNode.h"
 	"SyntaxAnalizer.h"
 
-1619958402 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
+1620149709 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
 	"STNodeData.h"
 
-1620031137 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
+1620006266 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
 	"Additional.h"
 	"STNode.h"
 	"LexAnalizer.h"
 
-1619729176 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
+1620006266 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1620031825 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1620006266 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
-1619980383 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
+1620149822 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
 	"STNode.h"
 
-1619947557 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNodeData.h
+1620006266 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNodeData.h
 	<vector>
 	<iostream>
 	<variant>
 	<memory>
+
+1620065104 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
+	"evaluator.h"
+
+1620065126 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
+
+1620149005 source:/home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.cpp
+	"memoryManager.h"
+
+1620065633 /home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.h
+	<map>
+	<string>
+
+1620149997 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/cmdNode.cpp
+	"STNode.h"
+
+1620149981 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/fullCmdNode.cpp
+	"STNode.h"
+
+1620150059 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/echoNode.cpp
+	"STNode.h"
+
+1620150116 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/rawNode.cpp
+	"STNode.h"
+
+1620152461 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/argcNode.cpp
+	"STNode.h"
+
+1620152478 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/argvNode.cpp
+	"STNode.h"
+
+1620153126 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/envpNode.cpp
+	"STNode.h"
+
+1620153087 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/equalSignNode.cpp
+	"STNode.h"
+
+1620151885 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/helpNode.cpp
+	"STNode.h"
+
+1620152446 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/quitNode.cpp
+	"STNode.h"
+
+1620153096 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/runNode.cpp
+	"STNode.h"
+
+1620150215 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/stringNode.cpp
+	"STNode.h"
+
+1620153126 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/varsNode.cpp
+	"STNode.h"
+
+1620150171 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/varSubstitutionNode.cpp
+	"STNode.h"
+
+1620152461 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argcNode.cpp
+	"STNode.h"
+
+1620152478 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argvNode.cpp
+	"STNode.h"
+
+1620149997 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/cmdNode.cpp
+	"STNode.h"
+
+1620150059 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/echoNode.cpp
+	"STNode.h"
+
+1620153126 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/envpNode.cpp
+	"STNode.h"
+
+1620153087 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/equalSignNode.cpp
+	"STNode.h"
+
+1620149981 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/fullCmdNode.cpp
+	"STNode.h"
+
+1620151885 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/helpNode.cpp
+	"STNode.h"
+
+1620152446 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/quitNode.cpp
+	"STNode.h"
+
+1620150116 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/rawNode.cpp
+	"STNode.h"
+
+1620153096 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/runNode.cpp
+	"STNode.h"
+
+1620153107 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/STNode.cpp
+	"STNode.h"
+
+1620150215 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/stringNode.cpp
+	"STNode.h"
+
+1620153126 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varsNode.cpp
+	"STNode.h"
+
+1620150171 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varSubstitutionNode.cpp
+	"STNode.h"
+
+1620006266 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/Additional.cpp
+	"Additional.h"
+
+1620006266 /home/sviat/CbProjects/LexAnalizer3/LexAnalizer/Additional.h
+	<string>
+
+1620006266 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/LexAnalizer.cpp
+	"LexAnalizer.h"
+
+1620006266 /home/sviat/CbProjects/LexAnalizer3/LexAnalizer/LexAnalizer.h
+	<iostream>
+	"State.h"
+	"Additional.h"
+
+1620006266 /home/sviat/CbProjects/LexAnalizer3/LexAnalizer/State.h
+	<string>
+	<map>
+	<algorithm>
+	<climits>
+	<vector>
+
+1620006266 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/State.cpp
+	"State.h"
 

@@ -15,6 +15,8 @@
 					<Add option="-g" />
 					<Add directory="include" />
 					<Add directory="Syntax" />
+					<Add directory="Evaluator" />
+					<Add directory="MemoryManager" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -26,6 +28,8 @@
 					<Add option="-O2" />
 					<Add directory="include" />
 					<Add directory="Syntax" />
+					<Add directory="Evaluator" />
+					<Add directory="MemoryManager" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -36,7 +40,25 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="Syntax/STNode.cpp" />
+		<Unit filename="Evaluator/evaluator.cpp" />
+		<Unit filename="Evaluator/evaluator.h" />
+		<Unit filename="MemoryManager/memoryManager.cpp" />
+		<Unit filename="MemoryManager/memoryManager.h" />
+		<Unit filename="Syntax/Nodes/STNode.cpp" />
+		<Unit filename="Syntax/Nodes/argcNode.cpp" />
+		<Unit filename="Syntax/Nodes/argvNode.cpp" />
+		<Unit filename="Syntax/Nodes/cmdNode.cpp" />
+		<Unit filename="Syntax/Nodes/echoNode.cpp" />
+		<Unit filename="Syntax/Nodes/envpNode.cpp" />
+		<Unit filename="Syntax/Nodes/equalSignNode.cpp" />
+		<Unit filename="Syntax/Nodes/fullCmdNode.cpp" />
+		<Unit filename="Syntax/Nodes/helpNode.cpp" />
+		<Unit filename="Syntax/Nodes/quitNode.cpp" />
+		<Unit filename="Syntax/Nodes/rawNode.cpp" />
+		<Unit filename="Syntax/Nodes/runNode.cpp" />
+		<Unit filename="Syntax/Nodes/stringNode.cpp" />
+		<Unit filename="Syntax/Nodes/varSubstitutionNode.cpp" />
+		<Unit filename="Syntax/Nodes/varsNode.cpp" />
 		<Unit filename="Syntax/STNode.h" />
 		<Unit filename="Syntax/STNodeData.h" />
 		<Unit filename="Syntax/SyntaxAnalizer.cpp" />
