@@ -8,6 +8,13 @@ struct ASTNode
     variant<fullCmdData, equalSignData, cmdData, echoData, runData, rawData, varSubstitutionData, stringData> NodeData;
 };
 
+struct fullCmdNode : public ASTNode
+{
+    fullCmdNode();
+    ~fullCmdNode();
+    void print() override;
+};
+
 struct equalSignNode : public ASTNode
 {
     equalSignNode(ASTNode* const varName, ASTNode* const varValue);
@@ -19,13 +26,6 @@ struct cmdNode : public ASTNode
 {
     cmdNode();
     ~cmdNode();
-    void print() override;
-};
-
-struct fullCmdNode : public ASTNode
-{
-    fullCmdNode();
-    ~fullCmdNode();
     void print() override;
 };
 
