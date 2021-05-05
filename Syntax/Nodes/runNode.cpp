@@ -1,4 +1,4 @@
-#include "STNode.h"
+#include "../../Visitor.h"
 
 runNode::runNode()
 {
@@ -14,6 +14,12 @@ runNode::~runNode()
 {
     delete get<runData>(NodeData).func; delete get<runData>(NodeData).lib;
 }
+
+void runNode::accept(Visitor &v)
+{
+    v.visit(*this);;
+}
+
 void runNode::print()
 {
     cout << "(Type: run, Data: ";

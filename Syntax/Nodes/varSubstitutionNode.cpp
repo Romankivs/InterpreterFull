@@ -1,4 +1,4 @@
-#include "STNode.h"
+#include "../../Visitor.h"
 
 varSubstitutionNode::varSubstitutionNode()
 {
@@ -8,6 +8,11 @@ varSubstitutionNode::varSubstitutionNode()
 varSubstitutionNode::varSubstitutionNode(const string& varName)
 {
     NodeData = varSubstitutionData{varName};
+}
+
+void varSubstitutionNode::accept(Visitor &v)
+{
+    v.visit(*this);;
 }
 
 void varSubstitutionNode::print()

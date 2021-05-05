@@ -1,4 +1,4 @@
-#include "STNode.h"
+#include "../../Visitor.h"
 
 fullCmdNode::fullCmdNode()
 {
@@ -8,6 +8,11 @@ fullCmdNode::fullCmdNode()
 fullCmdNode::~fullCmdNode()
 {
     delete get<fullCmdData>(NodeData).command;
+}
+
+void fullCmdNode::accept(Visitor &v)
+{
+    v.visit(*this);;
 }
 
 void fullCmdNode::print()

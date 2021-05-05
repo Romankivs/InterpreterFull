@@ -75,12 +75,12 @@
 	<climits>
 	<vector>
 
-1620232989 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
+1620240875 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
 	"LexAnalizer.h"
 	"STNode.h"
 	"SyntaxAnalizer.h"
 
-1620149709 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
+1620240410 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
 	"STNodeData.h"
 
 1620232715 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
@@ -91,7 +91,7 @@
 1620006266 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1620006266 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1620234398 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
 1620149822 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
@@ -157,50 +157,50 @@
 1620150171 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/varSubstitutionNode.cpp
 	"STNode.h"
 
-1620152461 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argcNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argcNode.cpp
+	"../../Visitor.h"
 
-1620152478 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argvNode.cpp
-	"STNode.h"
+1620240993 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argvNode.cpp
+	"../../Visitor.h"
 
-1620149997 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/cmdNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/cmdNode.cpp
+	"../../Visitor.h"
 
-1620150059 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/echoNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/echoNode.cpp
+	"../../Visitor.h"
 
-1620153126 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/envpNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/envpNode.cpp
+	"../../Visitor.h"
 
-1620153087 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/equalSignNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/equalSignNode.cpp
+	"../../Visitor.h"
 
-1620149981 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/fullCmdNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/fullCmdNode.cpp
+	"../../Visitor.h"
 
-1620151885 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/helpNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/helpNode.cpp
+	"../../Visitor.h"
 
-1620152446 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/quitNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/quitNode.cpp
+	"../../Visitor.h"
 
-1620150116 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/rawNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/rawNode.cpp
+	"../../Visitor.h"
 
-1620153096 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/runNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/runNode.cpp
+	"../../Visitor.h"
 
 1620153107 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/STNode.cpp
 	"STNode.h"
 
-1620150215 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/stringNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/stringNode.cpp
+	"../../Visitor.h"
 
-1620153126 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varsNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varsNode.cpp
+	"../../Visitor.h"
 
-1620150171 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varSubstitutionNode.cpp
-	"STNode.h"
+1620241028 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varSubstitutionNode.cpp
+	"../../Visitor.h"
 
 1620232877 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/Additional.cpp
 	"Additional.h"
@@ -225,4 +225,7 @@
 
 1620232878 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/State.cpp
 	"State.h"
+
+1620241087 /home/sviat/CbProjects/LexAnalizer3/Visitor.h
+	"STNode.h"
 
