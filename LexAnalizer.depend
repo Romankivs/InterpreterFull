@@ -75,7 +75,7 @@
 	<climits>
 	<vector>
 
-1620232715 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
+1620232989 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
 	"LexAnalizer.h"
 	"STNode.h"
 	"SyntaxAnalizer.h"

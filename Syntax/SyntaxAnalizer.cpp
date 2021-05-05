@@ -73,6 +73,8 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
         run(get<cmdData>(node->NodeData).cmd); break;
     case Lexema::NAME:
         equalSign(get<cmdData>(node->NodeData).cmd); break;
+    case Lexema::STRING:
+        equalSign(get<cmdData>(node->NodeData).cmd); break;
     default:
         error("cmd: command not found");
     }
