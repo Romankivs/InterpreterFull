@@ -12,7 +12,7 @@ fullCmdNode::~fullCmdNode()
 
 void fullCmdNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void fullCmdNode::print()

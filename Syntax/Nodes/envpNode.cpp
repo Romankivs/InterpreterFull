@@ -2,7 +2,7 @@
 
 void envpNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void envpNode::print()

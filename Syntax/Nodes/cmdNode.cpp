@@ -12,7 +12,7 @@ cmdNode::~cmdNode()
 
 void cmdNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void cmdNode::print()

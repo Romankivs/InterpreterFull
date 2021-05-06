@@ -2,7 +2,7 @@
 
 void argcNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void argcNode::print()

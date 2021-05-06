@@ -17,7 +17,7 @@ runNode::~runNode()
 
 void runNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void runNode::print()

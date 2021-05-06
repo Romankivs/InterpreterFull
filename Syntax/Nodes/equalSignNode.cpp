@@ -13,7 +13,7 @@ equalSignNode::~equalSignNode()
 
 void equalSignNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void equalSignNode::print()

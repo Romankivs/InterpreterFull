@@ -13,7 +13,7 @@ rawNode::~rawNode()
 
 void rawNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void rawNode::print()

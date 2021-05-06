@@ -7,7 +7,7 @@ stringNode::stringNode(const string& inpStr)
 
 void stringNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void stringNode::print()

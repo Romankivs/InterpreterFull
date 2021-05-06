@@ -1,12 +1,29 @@
 #pragma once
+#include "../Visitor.h"
+#include "memoryManager.h"
 
-class evaluator
+class evaluator : public Visitor
 {
-    public:
-        evaluator();
-        virtual ~evaluator();
-
-    protected:
-
-    private:
+public:
+    evaluator(ASTNode* inp, int argc, char** argv, char** envp);
+    void visit(argcNode* node);
+    void visit(argvNode* node);
+    void visit(cmdNode* node);
+    void visit(echoNode* node);
+    void visit(envpNode* node);
+    void visit(equalSignNode* node);
+    void visit(fullCmdNode* node);
+    void visit(helpNode* node);
+    void visit(quitNode* node);
+    void visit(rawNode* node);
+    void visit(runNode* node);
+    void visit(stringNode* node);
+    void visit(varsNode* node);
+    void visit(varSubstitutionNode* node);
+private:
+    ASTNode* inputTree;
+    memoryManager storage;
+    int argc;
+    char** argv;
+    char** envp;
 };

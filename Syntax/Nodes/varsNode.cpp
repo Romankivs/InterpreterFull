@@ -2,7 +2,7 @@
 
 void varsNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void varsNode::print()

@@ -12,7 +12,7 @@ echoNode::~echoNode()
 
 void echoNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void echoNode::print()

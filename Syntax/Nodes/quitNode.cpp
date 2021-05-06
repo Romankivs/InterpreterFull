@@ -2,7 +2,7 @@
 
 void quitNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void quitNode::print()

@@ -42,6 +42,12 @@
 		</Compiler>
 		<Unit filename="Evaluator/evaluator.cpp" />
 		<Unit filename="Evaluator/evaluator.h" />
+		<Unit filename="LexAnalizer/Additional.cpp" />
+		<Unit filename="LexAnalizer/Additional.h" />
+		<Unit filename="LexAnalizer/LexAnalizer.cpp" />
+		<Unit filename="LexAnalizer/LexAnalizer.h" />
+		<Unit filename="LexAnalizer/State.cpp" />
+		<Unit filename="LexAnalizer/State.h" />
 		<Unit filename="MemoryManager/memoryManager.cpp" />
 		<Unit filename="MemoryManager/memoryManager.h" />
 		<Unit filename="Syntax/Nodes/STNode.cpp" />
@@ -63,12 +69,7 @@
 		<Unit filename="Syntax/STNodeData.h" />
 		<Unit filename="Syntax/SyntaxAnalizer.cpp" />
 		<Unit filename="Syntax/SyntaxAnalizer.h" />
-		<Unit filename="include/Additional.h" />
-		<Unit filename="include/LexAnalizer.h" />
-		<Unit filename="include/State.h" />
-		<Unit filename="src/Additional.cpp" />
-		<Unit filename="src/LexAnalizer.cpp" />
-		<Unit filename="src/State.cpp" />
+		<Unit filename="Visitor.h" />
 		<Unit filename="src/main.cpp" />
 		<Extensions />
 	</Project>

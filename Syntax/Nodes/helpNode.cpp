@@ -2,7 +2,7 @@
 
 void helpNode::accept(Visitor &v)
 {
-    v.visit(*this);;
+    v.visit(this);;
 }
 
 void helpNode::print()
