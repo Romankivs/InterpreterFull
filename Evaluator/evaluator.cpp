@@ -3,9 +3,16 @@
 evaluator::evaluator(ASTNode* inp, int argc, char** argv, char** envp) :
     inputTree(inp), storage(), argc(argc), argv(argv), envp(envp) {};
 
-void evaluator::visit(argcNode* node) {};
+void evaluator::visit(argcNode* node)
+{
+     cout << "Number of arguments: " << argc << endl;
+};
 
-void evaluator::visit(argvNode* node) {};
+void evaluator::visit(argvNode* node)
+{
+    for (int i = 0; i < argc; i++)
+        cout << argv[i] << endl;
+};
 
 void evaluator::visit(cmdNode* node)
 {
@@ -14,9 +21,16 @@ void evaluator::visit(cmdNode* node)
 
 void evaluator::visit(echoNode* node) {};
 
-void evaluator::visit(envpNode* node) {};
+void evaluator::visit(envpNode* node)
+{
+    for (int i = 0; envp[i] != nullptr; i++)
+        cout << envp[i] << endl;
+};
 
-void evaluator::visit(equalSignNode* node) {};
+void evaluator::visit(equalSignNode* node)
+{
+
+};
 
 void evaluator::visit(fullCmdNode* node)
 {
@@ -41,6 +55,7 @@ void evaluator::visit(helpNode* node)
 
 void evaluator::visit(quitNode* node)
 {
+    cout << "Bye, it was nice working with you!" << endl;
     exit(0);
 };
 
