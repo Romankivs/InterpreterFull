@@ -29,8 +29,8 @@ public:
     ASTNode* inputTree;
     memoryManager* storage;
     vector<void*> loadedLibs;
-    int argc;
     string result;
+    int argc;
     char** argv;
     char** envp;
 };
