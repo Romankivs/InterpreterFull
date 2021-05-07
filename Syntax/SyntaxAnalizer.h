@@ -29,7 +29,7 @@ class SyntaxAnalizer
         void equalSign(ASTNode* &node);
         void raw(ASTNode* &node);
         void varSubstitution(ASTNode* &node);
-    private:
+    //private:
         size_t index;
         LexAnalizer* inputSrc;
         Token currentToken;

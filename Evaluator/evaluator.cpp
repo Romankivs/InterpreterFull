@@ -3,44 +3,67 @@
 evaluator::evaluator(ASTNode* inp, int argc, char** argv, char** envp) :
     inputTree(inp), storage(), argc(argc), argv(argv), envp(envp) {};
 
+evaluator::evaluator(memoryManager* storage, int argc, char** argv, char** envp) :
+    storage(storage), argc(argc), argv(argv), envp(envp) {};
+
+string evaluator::evaluate(ASTNode* node)
+{
+  evaluator v(storage, argc, argv, envp);
+  node->accept(v);
+  return v.getRes();
+}
+
+string evaluator::getRes()
+{
+    return result;
+}
+
 void evaluator::visit(argcNode* node)
 {
-     cout << "Number of arguments: " << argc << endl;
+     result = to_string(argc) + "\n";
 };
 
 void evaluator::visit(argvNode* node)
 {
+    result = "";
     for (int i = 0; i < argc; i++)
-        cout << argv[i] << endl;
+        result += string(argv[i]) + "\n";
 };
 
 void evaluator::visit(cmdNode* node)
 {
-    get<cmdData>(node->NodeData).cmd->accept(*this);
+    result = evaluate(get<cmdData>(node->NodeData).cmd);
 };
 
-void evaluator::visit(echoNode* node) {};
+void evaluator::visit(echoNode* node)
+{
+    result = evaluate(get<echoData>(node->NodeData).raw);
+};
 
 void evaluator::visit(envpNode* node)
 {
+    result = "";
     for (int i = 0; envp[i] != nullptr; i++)
-        cout << envp[i] << endl;
+    {
+        result += string(envp[i]) + "\n";
+    }
 };
 
 void evaluator::visit(equalSignNode* node)
 {
-    //string name = get<equalSignData>(node->NodeData).varName;
-    //string val = get<equalSignData>(node->NodeData).varValue;
+    string name = evaluate(get<equalSignData>(node->NodeData).varName);
+    string val = evaluate(get<equalSignData>(node->NodeData).varValue);
+    storage->assignValueToVar(name, val);
 };
 
 void evaluator::visit(fullCmdNode* node)
 {
-    get<fullCmdData>(node->NodeData).command->accept(*this);
+    cout << evaluate(get<fullCmdData>(node->NodeData).command);
 };
 
 void evaluator::visit(helpNode* node)
 {
-    cout << "echo - displays input \n"
+    result = "echo - displays input \n"
         "help - displays information about commands \n"
         "quit - exits prompt \n"
         "argc - displays number of arguments \n"
@@ -50,25 +73,38 @@ void evaluator::visit(helpNode* node)
         "Note:library = LibraryFib.dll if not specified\n"
         "name=value - create an environmental variable\n"
         "$var or ${var} - use a variable (use \" \" to escape whitespaces)\n"
-        "vars - display variables"
-        << endl;
+        "vars - display variables\n";
 };
 
 void evaluator::visit(quitNode* node)
 {
-    cout << "Bye, it was nice working with you!" << endl;
     exit(0);
 };
 
-void evaluator::visit(rawNode* node) {};
+void evaluator::visit(rawNode* node)
+{
+    result = "";
+    for (auto x : get<rawData>(node->NodeData).rawStr)
+        result += evaluate(x);
+};
 
-void evaluator::visit(runNode* node) {};
+void evaluator::visit(runNode* node)
+{
 
-void evaluator::visit(stringNode* node) {};
+};
+
+void evaluator::visit(stringNode* node)
+{
+    result = get<stringData>(node->NodeData).value;
+};
 
 void evaluator::visit(varsNode* node)
 {
-    cout << storage.listAllVars();
+    result = storage->listAllVars();
 };
 
-void evaluator::visit(varSubstitutionNode* node) {};
+void evaluator::visit(varSubstitutionNode* node)
+{
+    string varName = get<varSubstitutionData>(node->NodeData).variable;
+    result = storage->getVarValue(varName);
+};

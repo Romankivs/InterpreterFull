@@ -6,6 +6,9 @@ class evaluator : public Visitor
 {
 public:
     evaluator(ASTNode* inp, int argc, char** argv, char** envp);
+    evaluator(memoryManager* storage, int argc, char** argv, char** envp);
+    string evaluate(ASTNode* node);
+    string getRes();
     void visit(argcNode* node);
     void visit(argvNode* node);
     void visit(cmdNode* node);
@@ -20,10 +23,11 @@ public:
     void visit(stringNode* node);
     void visit(varsNode* node);
     void visit(varSubstitutionNode* node);
-private:
+//private:
     ASTNode* inputTree;
-    memoryManager storage;
+    memoryManager* storage;
     int argc;
+    string result;
     char** argv;
     char** envp;
 };
