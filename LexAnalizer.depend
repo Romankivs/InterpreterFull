@@ -75,7 +75,7 @@
 	<climits>
 	<vector>
 
-1620393084 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
+1620395022 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
 	"LexAnalizer.h"
 	"STNode.h"
 	"SyntaxAnalizer.h"
@@ -104,10 +104,11 @@
 	<variant>
 	<memory>
 
-1620393866 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
+1620395001 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
 	"evaluator.h"
 
-1620392983 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
+1620394308 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
+	<dlfcn.h>
 	"../Visitor.h"
 	"memoryManager.h"
 

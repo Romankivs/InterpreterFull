@@ -22,7 +22,7 @@ int main(int argc, char** argv, char** envp)
     eval.storage = &strg;
     res->accept(eval);
 
-    analizer.setInputString("echo 4 ${4}");
+    analizer.setInputString("run $4 ${4}");
     res = dynamic_cast<fullCmdNode*>(an.buildTree());
     an.printTree();
     res->accept(eval);
