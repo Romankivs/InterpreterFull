@@ -75,13 +75,13 @@
 	<climits>
 	<vector>
 
-1620294282 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
+1620388496 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
 	"LexAnalizer.h"
 	"STNode.h"
 	"SyntaxAnalizer.h"
 	"evaluator.h"
 
-1620240410 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
+1620327405 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
 	"STNodeData.h"
 
 1620232715 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
@@ -104,17 +104,17 @@
 	<variant>
 	<memory>
 
-1620288580 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
+1620388481 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
 	"evaluator.h"
 
-1620325517 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
+1620326926 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
 	"../Visitor.h"
 	"memoryManager.h"
 
-1620149005 source:/home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.cpp
+1620388904 source:/home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.cpp
 	"memoryManager.h"
 
-1620065633 /home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.h
+1620388305 /home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.h
 	<map>
 	<string>
 
@@ -160,49 +160,49 @@
 1620150171 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/varSubstitutionNode.cpp
 	"STNode.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argcNode.cpp
+1620326926 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argcNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argvNode.cpp
+1620326926 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argvNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/cmdNode.cpp
+1620326927 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/cmdNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/echoNode.cpp
+1620326927 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/echoNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/envpNode.cpp
+1620326927 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/envpNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/equalSignNode.cpp
+1620326927 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/equalSignNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/fullCmdNode.cpp
+1620326927 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/fullCmdNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/helpNode.cpp
+1620326927 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/helpNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/quitNode.cpp
+1620326927 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/quitNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/rawNode.cpp
+1620326928 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/rawNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/runNode.cpp
+1620326928 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/runNode.cpp
 	"../../Visitor.h"
 
 1620153107 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/STNode.cpp
 	"STNode.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/stringNode.cpp
+1620326928 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/stringNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varsNode.cpp
+1620326928 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varsNode.cpp
 	"../../Visitor.h"
 
-1620282616 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varSubstitutionNode.cpp
+1620326928 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varSubstitutionNode.cpp
 	"../../Visitor.h"
 
 1620232877 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/Additional.cpp
@@ -229,6 +229,6 @@
 1620232878 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/State.cpp
 	"State.h"
 
-1620282735 /home/sviat/CbProjects/LexAnalizer3/Visitor.h
+1620327405 /home/sviat/CbProjects/LexAnalizer3/Visitor.h
 	"STNode.h"
 

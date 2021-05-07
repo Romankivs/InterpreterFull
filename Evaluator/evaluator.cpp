@@ -29,7 +29,8 @@ void evaluator::visit(envpNode* node)
 
 void evaluator::visit(equalSignNode* node)
 {
-
+    //string name = get<equalSignData>(node->NodeData).varName;
+    //string val = get<equalSignData>(node->NodeData).varValue;
 };
 
 void evaluator::visit(fullCmdNode* node)
@@ -65,6 +66,9 @@ void evaluator::visit(runNode* node) {};
 
 void evaluator::visit(stringNode* node) {};
 
-void evaluator::visit(varsNode* node) {};
+void evaluator::visit(varsNode* node)
+{
+    cout << storage.listAllVars();
+};
 
 void evaluator::visit(varSubstitutionNode* node) {};

@@ -9,7 +9,7 @@ int main(int argc, char** argv, char** envp)
     cout << "Min Levenstein distance between two states: " << stateTmp.minLevensteinDistanceBetweenStates() << endl;
     //Lex analizer//
     LexAnalizer analizer;
-    analizer.setInputString("envp");
+    analizer.setInputString("vars");
     //Syntax analizer//
     SyntaxAnalizer an(&analizer);
     fullCmdNode* res = dynamic_cast<fullCmdNode*>(an.buildTree());
@@ -17,7 +17,7 @@ int main(int argc, char** argv, char** envp)
     if (res == nullptr)
         return 1;
     evaluator eval(res, argc, argv, envp);
-    eval.visit(res);
+    res->accept(eval);
 }
 
 
