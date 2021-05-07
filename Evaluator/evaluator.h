@@ -8,6 +8,7 @@ class evaluator : public Visitor
 public:
     evaluator(ASTNode* inp, int argc, char** argv, char** envp);
     evaluator(memoryManager* storage, int argc, char** argv, char** envp);
+    ~evaluator();
     string evaluate(ASTNode* node);
     string getRes();
     void visit(argcNode* node);
@@ -27,6 +28,7 @@ public:
 //private:
     ASTNode* inputTree;
     memoryManager* storage;
+    vector<void*> loadedLibs;
     int argc;
     string result;
     char** argv;

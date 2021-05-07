@@ -16,12 +16,12 @@ int main(int argc, char** argv, char** envp)
     an.printTree();
     if (res == nullptr)
         return 1;
-
+    // Evaluator //
     memoryManager strg;
     evaluator eval(res, argc, argv, envp);
     eval.storage = &strg;
     res->accept(eval);
-
+    // second analized str //
     analizer.setInputString("run $4 ${4}");
     res = dynamic_cast<fullCmdNode*>(an.buildTree());
     an.printTree();

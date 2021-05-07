@@ -6,6 +6,12 @@ evaluator::evaluator(ASTNode* inp, int argc, char** argv, char** envp) :
 evaluator::evaluator(memoryManager* storage, int argc, char** argv, char** envp) :
     storage(storage), argc(argc), argv(argv), envp(envp) {};
 
+evaluator::~evaluator()
+{
+    for (auto x : loadedLibs) // closes all loaded libraries
+        dlclose(x);
+}
+
 string evaluator::evaluate(ASTNode* node)
 {
   evaluator v(storage, argc, argv, envp);
