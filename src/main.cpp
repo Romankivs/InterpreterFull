@@ -9,7 +9,10 @@ int main(int argc, char** argv, char** envp)
     cout << "Min Levenstein distance between two states: " << stateTmp.minLevensteinDistanceBetweenStates() << endl;
     //Lex analizer//
     LexAnalizer analizer;
-    analizer.setInputString("4=cannot");
+    // input
+    string inp;
+    //getline(cin, inp);
+    analizer.setInputString("\" \"=5");
     //Syntax analizer//
     SyntaxAnalizer an(&analizer);
     fullCmdNode* res = dynamic_cast<fullCmdNode*>(an.buildTree());
@@ -22,7 +25,7 @@ int main(int argc, char** argv, char** envp)
     eval.storage = &strg;
     res->accept(eval);
     // second analized str //
-    analizer.setInputString("run $4 ${4}");
+    analizer.setInputString(" echo ${} + 666666");
     res = dynamic_cast<fullCmdNode*>(an.buildTree());
     if (res == nullptr)
         return 2;

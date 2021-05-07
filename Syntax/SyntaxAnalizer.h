@@ -13,9 +13,11 @@ public:
     bool accept(Lexema type);
     bool curTokEqual(Lexema type);
     void error(const string msg);
+    void warning(const string msg);
     ASTNode* getResult();
     ASTNode* buildTree();
     void printTree();
+    Token searchForRightFunc(const string& inp);
 
     void cmd(ASTNode* &node);
     void echo(ASTNode* &node);
@@ -35,6 +37,14 @@ private:
     Token currentToken;
     ASTNode* resultRoot;
     bool treeSuccessfulyConstructed;
+    map<string, Lexema> posCmds = {{"echo", Lexema::ECHO},
+                                        {"quit", Lexema::QUIT},
+                                        {"argc", Lexema::ARGC},
+                                        {"argv", Lexema::ARGV},
+                                        {"envp", Lexema::ENVP},
+                                        {"help", Lexema::HELP},
+                                        {"vars", Lexema::VARS},
+                                        {"run", Lexema::RUN}};
 };
 
 

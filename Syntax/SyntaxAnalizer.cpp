@@ -36,6 +36,11 @@ void SyntaxAnalizer::error(const string msg)
     treeSuccessfulyConstructed = false;
 }
 
+void SyntaxAnalizer::warning(const string msg)
+{
+    cout << "(Warning) " << msg << " (Index: " << index << ")" << endl;
+}
+
 ASTNode* SyntaxAnalizer::buildTree()
 {
     index = 0;
@@ -46,8 +51,26 @@ ASTNode* SyntaxAnalizer::buildTree()
     accept(Lexema::WHITESPACE);
     cmd(get<fullCmdData>(resultRoot->NodeData).command);
     if (currentToken.type != Lexema::END_OF_LINE)
-        error("fullCmd: endl not found or too many tokens");
+        warning("fullCmd: too many tokens, some of them were ignored");
     return getResult();
+}
+
+Token SyntaxAnalizer::searchForRightFunc(const string& inp)
+{
+    Token bestSuitedFunc;
+    int minDist = INT_MAX;
+    for (auto& x : posCmds)
+    {
+        int dist = LevensteinDistance(inp, x.first);
+        if (dist < minDist)
+        {
+            minDist = dist;
+            bestSuitedFunc = Token{x.second, x.first};
+        }
+    }
+    if (minDist > 2) // if no suitable replacement found
+        return Token{Lexema::STRING, inp};
+    return bestSuitedFunc;
 }
 
 void SyntaxAnalizer::cmd(ASTNode* &node)
@@ -122,7 +145,12 @@ void SyntaxAnalizer::equalSign(ASTNode* &node)
         varSubstitution(get<equalSignData>(node->NodeData).varValue);
     }
     else
-        error("equal: wrong token");
+    {
+        warning("equal: wrong token, it was substituted with empty string");
+        currentToken = Token{Lexema::STRING, ""};
+        get<equalSignData>(node->NodeData).varValue = new stringNode(currentToken.value);
+        getNext();
+    }
 }
 
 void SyntaxAnalizer::echo(ASTNode* &node)
@@ -132,7 +160,10 @@ void SyntaxAnalizer::echo(ASTNode* &node)
     if (accept(Lexema::WHITESPACE))
         raw(get<echoData>(node->NodeData).raw);
     else
-        error("echo: nothing to output");
+    {
+        warning("echo: nothing to output");
+        raw(get<echoData>(node->NodeData).raw);
+    }
 }
 
 void SyntaxAnalizer::raw(ASTNode* &node)
@@ -152,6 +183,8 @@ void SyntaxAnalizer::raw(ASTNode* &node)
             getNext();
         }
     }
+    if (result.empty()) // output nothing
+        result.push_back(new stringNode(""));
     node = new rawNode(result);
 }
 
@@ -164,7 +197,12 @@ void SyntaxAnalizer::varSubstitution(ASTNode* &node)
         getNext();
     }
     else
-        error("varSubstitution: no value to substitute");
+    {
+        warning("varSubstitution: no value to substitute, replaced with whitespace");
+        currentToken = Token{Lexema::STRING, " "};
+        node = new varSubstitutionNode(currentToken.value);
+        getNext();
+    }
     accept(Lexema::CLOSE_BRACE);
 }
 
