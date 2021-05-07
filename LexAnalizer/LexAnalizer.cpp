@@ -8,26 +8,17 @@ LexAnalizer::LexAnalizer() // Constructor initialized automatas table
         functions[make_pair(c, State::INSIDE_QUOTATION_MARKS)] = &LexAnalizer::continueSequence;
         functions[make_pair(c, State::OUTSIDE_QUOTATION_MARKS)] = &LexAnalizer::continueSequence;
         functions[make_pair(c, State::WHITESPACE)] = &LexAnalizer::endWhitespace;
-        if (isalpha(c))
-            functions[make_pair(c, State::WAITING)] = &LexAnalizer::beginName;
-        else
-            functions[make_pair(c, State::WAITING)] = &LexAnalizer::beginUnquotatedString;
-        if (isalnum(c))
-            functions[make_pair(c, State::NAME_S)] = &LexAnalizer::continueSequence;
-        else
-            functions[make_pair(c, State::NAME_S)] = &LexAnalizer::beginUnquotatedString;
+        functions[make_pair(c, State::WAITING)] = &LexAnalizer::beginUnquotatedString;
     }
     // Special characters that end Name and UnquotatedString lexems //
     vector<char> specialCharacters = { '\0', ' ', '$', '{', '}', '=', '\n' };
     for (auto c : specialCharacters)
     {
         functions[make_pair(c, State::OUTSIDE_QUOTATION_MARKS)] = &LexAnalizer::endUnquotatedString;
-        functions[make_pair(c, State::NAME_S)] = &LexAnalizer::endName;
     }
     // Quotation Marks //
     functions[make_pair('\"', State::INSIDE_QUOTATION_MARKS)] = &LexAnalizer::endQuotationMarks;
     functions[make_pair('\"', State::OUTSIDE_QUOTATION_MARKS)] = &LexAnalizer::beginQuotationMarks;
-    functions[make_pair('\"', State::NAME_S)] = &LexAnalizer::beginQuotationMarks;
     functions[make_pair('\"', State::WAITING)] = &LexAnalizer::beginQuotationMarks;
     // endl characters //
     vector<char> endlChars = {'\0', '\n'};
@@ -110,25 +101,12 @@ void LexAnalizer::beginQuotationMarks()
 void LexAnalizer::endQuotationMarks()
 {
     currentState = State::WAITING;
-    FinishTokenCreation(Lexema::STRING);
-    if (analizerInput.input[analizerInput.index] != '\"') // if terminated
-        analizerInput.index -= 1;
-}
-
-void LexAnalizer::beginName()
-{
-    currentState = State::NAME_S;
-    result.value += analizerInput.input[analizerInput.index];
-}
-
-void LexAnalizer::endName()
-{
-    currentState = State::WAITING;
     if (possibleCmds.contains(result.value))
         FinishTokenCreation(possibleCmds[result.value]);
     else
-        FinishTokenCreation(Lexema::NAME);
-    analizerInput.index -= 1;
+        FinishTokenCreation(Lexema::STRING);
+    if (analizerInput.input[analizerInput.index] != '\"') // if terminated
+        analizerInput.index -= 1;
 }
 
 void LexAnalizer::beginUnquotatedString()
@@ -140,7 +118,10 @@ void LexAnalizer::beginUnquotatedString()
 void LexAnalizer::endUnquotatedString()
 {
     currentState = State::WAITING;
-    FinishTokenCreation(Lexema::STRING);
+    if (possibleCmds.contains(result.value))
+        FinishTokenCreation(possibleCmds[result.value]);
+    else
+        FinishTokenCreation(Lexema::STRING);
     analizerInput.index -= 1;
 }
 

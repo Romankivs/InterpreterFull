@@ -16,7 +16,6 @@ public:
     {
         INSIDE_QUOTATION_MARKS,
         OUTSIDE_QUOTATION_MARKS,
-        NAME_S,
         WHITESPACE,
         WAITING
     };
@@ -24,7 +23,6 @@ public:
 private:
     vector<string> stateToString = {"INSIDE_QUOTATION_MARKS",
                                     "OUTSIDE_QUOTATION_MARKS",
-                                    "NAME_S",
                                     "WHITESPACE",
                                     "WAITING"
                                    };

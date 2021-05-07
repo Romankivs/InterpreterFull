@@ -22,9 +22,6 @@ private:
     void beginQuotationMarks();
     void endQuotationMarks();
 
-    void beginName();
-    void endName();
-
     void dollarSign();
     void equalSign();
 

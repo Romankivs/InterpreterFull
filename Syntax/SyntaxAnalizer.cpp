@@ -71,8 +71,6 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
         vars(get<cmdData>(node->NodeData).cmd); break;
     case Lexema::RUN:
         run(get<cmdData>(node->NodeData).cmd); break;
-    case Lexema::NAME:
-        equalSign(get<cmdData>(node->NodeData).cmd); break;
     case Lexema::STRING:
         equalSign(get<cmdData>(node->NodeData).cmd); break;
     default:
@@ -85,7 +83,7 @@ void SyntaxAnalizer::run(ASTNode* &node)
     getNext(); // skip "run"
     bool success = accept(Lexema::WHITESPACE);
     node = new runNode();
-    if (curTokEqual(Lexema::STRING) || curTokEqual(Lexema::NAME))
+    if (curTokEqual(Lexema::STRING))
     {
         get<runData>(node->NodeData).func = new stringNode(currentToken.value);
         getNext();
@@ -95,7 +93,7 @@ void SyntaxAnalizer::run(ASTNode* &node)
     else
         success = false;
     success = accept(Lexema::WHITESPACE);
-    if (curTokEqual(Lexema::STRING) || curTokEqual(Lexema::NAME))
+    if (curTokEqual(Lexema::STRING))
     {
         get<runData>(node->NodeData).lib = new stringNode(currentToken.value);
         getNext();
@@ -114,7 +112,7 @@ void SyntaxAnalizer::equalSign(ASTNode* &node)
     getNext();
     if (!accept(Lexema::EQUAL_SIGN))
         error("cmd: command not found");
-    if (curTokEqual(Lexema::STRING) || curTokEqual(Lexema::NAME))
+    if (curTokEqual(Lexema::STRING))
     {
         get<equalSignData>(node->NodeData).varValue = new stringNode(currentToken.value);
         getNext();
@@ -160,7 +158,7 @@ void SyntaxAnalizer::raw(ASTNode* &node)
 void SyntaxAnalizer::varSubstitution(ASTNode* &node)
 {
     accept(Lexema::OPEN_BRACE);
-    if (curTokEqual(Lexema::STRING) || curTokEqual(Lexema::NAME))
+    if (curTokEqual(Lexema::STRING))
     {
         node = new varSubstitutionNode(currentToken.value);
         getNext();

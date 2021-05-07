@@ -24,8 +24,9 @@ int main(int argc, char** argv, char** envp)
     // second analized str //
     analizer.setInputString("run $4 ${4}");
     res = dynamic_cast<fullCmdNode*>(an.buildTree());
+    if (res == nullptr)
+        return 2;
     an.printTree();
     res->accept(eval);
 }
-
 
