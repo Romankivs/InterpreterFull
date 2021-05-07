@@ -76,6 +76,10 @@ Token SyntaxAnalizer::searchForRightFunc(const string& inp)
 void SyntaxAnalizer::cmd(ASTNode* &node)
 {
     node = new cmdNode;
+    /*bool validCmd = false;
+    for (int i = 0; i < posCmds.size(); ++i)
+        if currentToken.type
+    */
     switch (currentToken.type)
     {
     case Lexema::ECHO:
@@ -104,7 +108,7 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
 void SyntaxAnalizer::run(ASTNode* &node)
 {
     getNext(); // skip "run"
-    bool success = accept(Lexema::WHITESPACE);
+    accept(Lexema::WHITESPACE);
     node = new runNode();
     if (curTokEqual(Lexema::STRING))
     {
@@ -114,8 +118,13 @@ void SyntaxAnalizer::run(ASTNode* &node)
     else if (accept(Lexema::DOLLAR_SIGN))
         varSubstitution(get<runData>(node->NodeData).func);
     else
-        success = false;
-    success = accept(Lexema::WHITESPACE);
+    {
+        warning("run: invalid function replaced with random");
+        currentToken = Token{Lexema::STRING, "random"};
+        get<runData>(node->NodeData).func = new stringNode(currentToken.value);
+        getNext();
+    }
+    accept(Lexema::WHITESPACE);
     if (curTokEqual(Lexema::STRING))
     {
         get<runData>(node->NodeData).lib = new stringNode(currentToken.value);
@@ -124,9 +133,12 @@ void SyntaxAnalizer::run(ASTNode* &node)
     else if (accept(Lexema::DOLLAR_SIGN))
         varSubstitution(get<runData>(node->NodeData).lib);
     else
-        success = false;
-    if (!success)
-        error("run: not enough or invalid arguments");
+    {
+        warning("run: invalid lib replaced with LibraryFib.so");
+        currentToken = Token{Lexema::STRING, "LibraryFib.so"};
+        get<runData>(node->NodeData).lib = new stringNode(currentToken.value);
+        getNext();
+    }
 }
 
 void SyntaxAnalizer::equalSign(ASTNode* &node)

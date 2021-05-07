@@ -97,17 +97,19 @@ void evaluator::visit(rawNode* node)
 void evaluator::visit(runNode* node)
 {
     const char* lib = evaluate(get<runData>(node->NodeData).lib).c_str();
+    string prtlib = string(lib);
     const char* func = evaluate(get<runData>(node->NodeData).func).c_str();
+    string prtfunc = string(func);
     void* handle = dlopen(lib, RTLD_LAZY);
     if (handle == nullptr)
     {
-        result = "Library \"" + string(lib) + "\" not found\n";
+        result = "Library \"" + prtlib + "\" not found\n";
         return;
     }
     auto funcP = reinterpret_cast<void(*)()>(dlsym(handle, func));
     if (funcP == nullptr)
     {
-        result = "Function \"" + string(func) + "\" not found\n";
+        result = "Function \"" + prtfunc + "\" not found\n";
         return;
     }
     funcP();
