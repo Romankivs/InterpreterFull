@@ -16,10 +16,3 @@ void rawNode::accept(Visitor &v)
     v.visit(this);;
 }
 
-void rawNode::print()
-{
-    cout << "(Type: raw, Data: ";
-    for (const auto& x : get<rawData>(NodeData).rawStr)
-        x->print();
-    cout << ")";
-}

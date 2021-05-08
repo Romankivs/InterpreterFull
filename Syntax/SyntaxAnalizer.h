@@ -1,5 +1,4 @@
 #pragma once
-#include "Additional.h"
 #include "STNode.h"
 #include "LexAnalizer.h"
 
@@ -16,7 +15,6 @@ public:
     void warning(const string msg);
     ASTNode* getResult();
     ASTNode* buildTree();
-    void printTree();
     Token searchForRightFunc(const string& inp);
 
     void cmd(ASTNode* &node);

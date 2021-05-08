@@ -16,11 +16,3 @@ void equalSignNode::accept(Visitor &v)
     v.visit(this);;
 }
 
-void equalSignNode::print()
-{
-    cout << "(Type: equalSign, Data: ";
-    get<equalSignData>(NodeData).varName->print();
-    cout << ", ";
-    get<equalSignData>(NodeData).varValue->print();
-    cout << ")";
-}

@@ -1,9 +1,6 @@
 #include "Interpreter.h"
 
-Interpreter::Interpreter(int argc, char** argv, char** envp) : argc(argc), argv(argv), envp(envp)
-{
-
-}
+Interpreter::Interpreter(int argc, char** argv, char** envp) : argc(argc), argv(argv), envp(envp) {};
 
 void Interpreter::start()
 {
@@ -13,6 +10,9 @@ void Interpreter::start()
     evaluator eval(&strg, argc, argv, envp);
     fullCmdNode* res;
     string inp;
+    #ifdef DEBUG
+        Printer printer;
+    #endif // DEBUG
     try
     {
         while (1)
@@ -24,7 +24,7 @@ void Interpreter::start()
                 analizer.setInputString(inp);
                 res = dynamic_cast<fullCmdNode*>(an.buildTree());
                 #ifdef DEBUG
-                    an.printTree();
+                    printer.print(res);
                 #endif // DEBUG
                 res->accept(eval);
                 delete res;

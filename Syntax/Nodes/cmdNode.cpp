@@ -15,9 +15,3 @@ void cmdNode::accept(Visitor &v)
     v.visit(this);;
 }
 
-void cmdNode::print()
-{
-    cout << "(Type: cmd, Data: ";
-    get<cmdData>(NodeData).cmd->print();
-    cout << ")";
-}

@@ -277,10 +277,5 @@ ASTNode* SyntaxAnalizer::getResult()
     return resultRoot;
 }
 
-void SyntaxAnalizer::printTree()
-{
-    resultRoot->print();
-}
-
 
 

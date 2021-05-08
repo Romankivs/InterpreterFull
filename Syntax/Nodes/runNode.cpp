@@ -19,12 +19,3 @@ void runNode::accept(Visitor &v)
 {
     v.visit(this);;
 }
-
-void runNode::print()
-{
-    cout << "(Type: run, Data: ";
-    get<runData>(NodeData).func->print();
-    cout << ", ";
-    get<runData>(NodeData).lib->print();
-    cout << ")";
-}

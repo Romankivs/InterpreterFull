@@ -1,6 +1,7 @@
 #pragma once
 #include "evaluator.h"
 #include "SyntaxAnalizer.h"
+#include "Printer.h"
 
 class Interpreter
 {
