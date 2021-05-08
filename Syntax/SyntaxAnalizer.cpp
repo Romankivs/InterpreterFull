@@ -19,7 +19,9 @@ void SyntaxAnalizer::getNext()
     {
         currentToken = inputSrc->getToken();
         inputTokens.push_back(currentToken);
-        //cout << "Type: " << lexemaToString(currentToken.type) << " Value: " << currentToken.value << endl;
+        #ifdef DEBUG
+            cout << "Type: " << lexemaToString(currentToken.type) << " Value: " << currentToken.value << endl;
+        #endif // DEBUG
         ++index;
     }
 }

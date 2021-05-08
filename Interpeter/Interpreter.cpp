@@ -19,11 +19,16 @@ void Interpreter::start()
         {
             cout << "~>";
             getline(cin, inp);
-            analizer.setInputString(inp);
-            res = dynamic_cast<fullCmdNode*>(an.buildTree());
-            //an.printTree();
-            res->accept(eval);
-            delete res;
+            if (!inp.empty())
+            {
+                analizer.setInputString(inp);
+                res = dynamic_cast<fullCmdNode*>(an.buildTree());
+                #ifdef DEBUG
+                    an.printTree();
+                #endif // DEBUG
+                res->accept(eval);
+                delete res;
+            }
         }
     }
     catch (int e)

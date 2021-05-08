@@ -93,7 +93,7 @@
 1620006266 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1620477464 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1620481110 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
 1620149822 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
@@ -234,7 +234,7 @@
 1620327405 /home/sviat/CbProjects/LexAnalizer3/Visitor.h
 	"STNode.h"
 
-1620478442 source:/home/sviat/CbProjects/LexAnalizer3/Interpeter/Interpreter.cpp
+1620481069 source:/home/sviat/CbProjects/LexAnalizer3/Interpeter/Interpreter.cpp
 	"Interpreter.h"
 
 1620477235 /home/sviat/CbProjects/LexAnalizer3/Interpreter/Interpreter.h
