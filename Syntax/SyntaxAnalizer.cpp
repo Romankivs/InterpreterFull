@@ -1,7 +1,7 @@
 #include "SyntaxAnalizer.h"
 
 SyntaxAnalizer::SyntaxAnalizer(LexAnalizer* const inpLex) :
-    inputSrc(inpLex), resultRoot(nullptr), treeSuccessfulyConstructed(false) {}
+    inputSrc(inpLex), resultRoot(nullptr) {}
 
 SyntaxAnalizer::~SyntaxAnalizer()
 {
@@ -19,7 +19,7 @@ void SyntaxAnalizer::getNext()
     {
         currentToken = inputSrc->getToken();
         inputTokens.push_back(currentToken);
-        cout << "Type: " << lexemaToString(currentToken.type) << " Value: " << currentToken.value << endl;
+        //cout << "Type: " << lexemaToString(currentToken.type) << " Value: " << currentToken.value << endl;
         ++index;
     }
 }
@@ -74,7 +74,6 @@ ASTNode* SyntaxAnalizer::buildTree()
     index = 0;
     inputTokens.clear();
     getNext();
-    treeSuccessfulyConstructed = true;
 
     resultRoot = new fullCmdNode;
     accept(Lexema::WHITESPACE);
@@ -273,17 +272,12 @@ void SyntaxAnalizer::vars(ASTNode* &node)
 
 ASTNode* SyntaxAnalizer::getResult()
 {
-    if (!treeSuccessfulyConstructed)
-        return nullptr;
     return resultRoot;
 }
 
 void SyntaxAnalizer::printTree()
 {
-    if (getResult() == nullptr)
-        cout << "printTree: tree wasn`t constructed, printing is not possible" << endl;
-    else
-        resultRoot->print();
+    resultRoot->print();
 }
 
 

@@ -33,21 +33,18 @@ public:
     void varSubstitution(ASTNode* &node);
 private:
     size_t index;
-
-    vector<Token> inputTokens;
-
-    LexAnalizer* inputSrc;
     Token currentToken;
+    vector<Token> inputTokens;
+    LexAnalizer* inputSrc;
     ASTNode* resultRoot;
-    bool treeSuccessfulyConstructed;
     map<string, Lexema> posCmds = {{"echo", Lexema::ECHO},
-                                        {"quit", Lexema::QUIT},
-                                        {"argc", Lexema::ARGC},
-                                        {"argv", Lexema::ARGV},
-                                        {"envp", Lexema::ENVP},
-                                        {"help", Lexema::HELP},
-                                        {"vars", Lexema::VARS},
-                                        {"run", Lexema::RUN}};
+                                   {"quit", Lexema::QUIT},
+                                   {"argc", Lexema::ARGC},
+                                   {"argv", Lexema::ARGV},
+                                   {"envp", Lexema::ENVP},
+                                   {"help", Lexema::HELP},
+                                   {"vars", Lexema::VARS},
+                                   {"run", Lexema::RUN}};
 };
 
 

@@ -2,10 +2,11 @@
 #include "STNode.h"
 #include "SyntaxAnalizer.h"
 #include "evaluator.h"
+#include "Interpreter.h"
 
 int main(int argc, char** argv, char** envp)
 {
-    State stateTmp;
+    /*State stateTmp;
     cout << "Min Levenstein distance between two states: " << stateTmp.minLevensteinDistanceBetweenStates() << endl;
     //Lex analizer//
     LexAnalizer analizer;
@@ -30,6 +31,8 @@ int main(int argc, char** argv, char** envp)
     if (res == nullptr)
         return 2;
     an.printTree();
-    res->accept(eval);
+    res->accept(eval);*/
+    Interpreter interp(argc, argv, envp);
+    interp.start();
 }
 

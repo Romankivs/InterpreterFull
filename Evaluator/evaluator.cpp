@@ -76,7 +76,7 @@ void evaluator::visit(helpNode* node)
         "argv - displays arguments \n"
         "envp - displays environmental variables\n"
         "run - run a function from a dll library (usage run \"function\" [\"library\"])\n"
-        "Note:library = LibraryFib.dll if not specified\n"
+        "Note:library = LibraryFib.so if not specified\n"
         "name=value - create an environmental variable\n"
         "$var or ${var} - use a variable (use \" \" to escape whitespaces)\n"
         "vars - display variables\n";
@@ -84,7 +84,7 @@ void evaluator::visit(helpNode* node)
 
 void evaluator::visit(quitNode* node)
 {
-    exit(0);
+    throw (0);
 };
 
 void evaluator::visit(rawNode* node)
@@ -92,6 +92,7 @@ void evaluator::visit(rawNode* node)
     result = "";
     for (auto x : get<rawData>(node->NodeData).rawStr)
         result += evaluate(x);
+    result += "\n";
 };
 
 void evaluator::visit(runNode* node)
