@@ -128,13 +128,10 @@ void SyntaxAnalizer::run(ASTNode* &node)
     getNext(); // skip "run"
     accept(Lexema::WHITESPACE);
     node = new runNode();
-    if (curTokEqual(Lexema::STRING))
+    if (!curTokEqual(Lexema::END_OF_LINE))
     {
-        get<runData>(node->NodeData).func = new stringNode(currentToken.value);
-        getNext();
+        rawWithoutSpaces(get<runData>(node->NodeData).func);
     }
-    else if (accept(Lexema::DOLLAR_SIGN))
-        varSubstitution(get<runData>(node->NodeData).func);
     else
     {
         warning("run: invalid function replaced with random");
@@ -143,13 +140,10 @@ void SyntaxAnalizer::run(ASTNode* &node)
         getNext();
     }
     accept(Lexema::WHITESPACE);
-    if (curTokEqual(Lexema::STRING))
+    if (!curTokEqual(Lexema::END_OF_LINE))
     {
-        get<runData>(node->NodeData).lib = new stringNode(currentToken.value);
-        getNext();
+        rawWithoutSpaces(get<runData>(node->NodeData).lib);
     }
-    else if (accept(Lexema::DOLLAR_SIGN))
-        varSubstitution(get<runData>(node->NodeData).lib);
     else
     {
         warning("run: invalid lib replaced with LibraryFib.so");
@@ -165,14 +159,9 @@ void SyntaxAnalizer::equalSign(ASTNode* &node)
     node = new equalSignNode(new stringNode(currentToken.value), nullptr);
     getNext();
     accept(Lexema::EQUAL_SIGN);
-    if (curTokEqual(Lexema::STRING))
+    if (!curTokEqual(Lexema::END_OF_LINE))
     {
-        get<equalSignData>(node->NodeData).varValue = new stringNode(currentToken.value);
-        getNext();
-    }
-    else if (accept(Lexema::DOLLAR_SIGN))
-    {
-        varSubstitution(get<equalSignData>(node->NodeData).varValue);
+        rawWithoutSpaces(get<equalSignData>(node->NodeData).varValue);
     }
     else
     {
@@ -199,7 +188,29 @@ void SyntaxAnalizer::echo(ASTNode* &node)
 void SyntaxAnalizer::raw(ASTNode* &node)
 {
     vector<ASTNode*> result;
-    while (currentToken.type != Lexema::END_OF_LINE)
+    while (!curTokEqual(Lexema::END_OF_LINE))
+    {
+        if (accept(Lexema::DOLLAR_SIGN))
+        {
+            ASTNode* res;
+            varSubstitution(res);
+            result.push_back(res);
+        }
+        else
+        {
+            result.push_back(new stringNode(currentToken.value));
+            getNext();
+        }
+    }
+    if (result.empty()) // output nothing
+        result.push_back(new stringNode(""));
+    node = new rawNode(result);
+}
+
+void SyntaxAnalizer::rawWithoutSpaces(ASTNode* &node)
+{
+    vector<ASTNode*> result;
+    while (!curTokEqual(Lexema::END_OF_LINE) && !curTokEqual(Lexema::WHITESPACE))
     {
         if (accept(Lexema::DOLLAR_SIGN))
         {

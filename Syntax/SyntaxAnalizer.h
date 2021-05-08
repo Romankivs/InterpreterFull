@@ -28,6 +28,7 @@ public:
     void run(ASTNode* &node);
     void equalSign(ASTNode* &node);
     void raw(ASTNode* &node);
+    void rawWithoutSpaces(ASTNode* &node);
     void varSubstitution(ASTNode* &node);
 private:
     size_t index;

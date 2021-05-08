@@ -6,11 +6,11 @@
 class evaluator : public Visitor
 {
 public:
-    evaluator(ASTNode* inp, int argc, char** argv, char** envp);
     evaluator(memoryManager* storage, int argc, char** argv, char** envp);
     ~evaluator();
     string evaluate(ASTNode* node);
     string getRes();
+    void warning(const string msg);
     void visit(argcNode* node);
     void visit(argvNode* node);
     void visit(cmdNode* node);
@@ -25,7 +25,7 @@ public:
     void visit(stringNode* node);
     void visit(varsNode* node);
     void visit(varSubstitutionNode* node);
-//private:
+private:
     ASTNode* inputTree;
     memoryManager* storage;
     vector<void*> loadedLibs;

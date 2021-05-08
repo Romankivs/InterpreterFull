@@ -1,8 +1,5 @@
 #include "evaluator.h"
 
-evaluator::evaluator(ASTNode* inp, int argc, char** argv, char** envp) :
-    inputTree(inp), storage(), argc(argc), argv(argv), envp(envp) {};
-
 evaluator::evaluator(memoryManager* storage, int argc, char** argv, char** envp) :
     storage(storage), argc(argc), argv(argv), envp(envp) {};
 
@@ -22,6 +19,11 @@ string evaluator::evaluate(ASTNode* node)
 string evaluator::getRes()
 {
     return result;
+}
+
+void evaluator::warning(const string msg)
+{
+    cout << "(Warning) " << msg << endl;
 }
 
 void evaluator::visit(argcNode* node)
@@ -44,6 +46,7 @@ void evaluator::visit(cmdNode* node)
 void evaluator::visit(echoNode* node)
 {
     result = evaluate(get<echoData>(node->NodeData).raw);
+    result += "\n";
 };
 
 void evaluator::visit(envpNode* node)
@@ -92,7 +95,6 @@ void evaluator::visit(rawNode* node)
     result = "";
     for (auto x : get<rawData>(node->NodeData).rawStr)
         result += evaluate(x);
-    result += "\n";
 };
 
 void evaluator::visit(runNode* node)
@@ -130,4 +132,6 @@ void evaluator::visit(varSubstitutionNode* node)
 {
     string varName = get<varSubstitutionData>(node->NodeData).variable;
     result = storage->getVarValue(varName);
+    if (result.empty())
+        warning("evaluator: variable " + varName + " doesn`t exist or empty");
 };
