@@ -9,6 +9,7 @@ public:
     SyntaxAnalizer(LexAnalizer* const inpLex);
     ~SyntaxAnalizer();
     void getNext();
+    void unGet();
 
     bool accept(Lexema type);
     bool curTokEqual(Lexema type);
@@ -33,6 +34,9 @@ public:
     void varSubstitution(ASTNode* &node);
 private:
     size_t index;
+
+    vector<Token> inputTokens;
+
     LexAnalizer* inputSrc;
     Token currentToken;
     ASTNode* resultRoot;

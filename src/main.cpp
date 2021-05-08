@@ -25,7 +25,7 @@ int main(int argc, char** argv, char** envp)
     eval.storage = &strg;
     res->accept(eval);
     // second analized str //
-    analizer.setInputString(" run 5 5");
+    analizer.setInputString(" echo ${}  cum");
     res = dynamic_cast<fullCmdNode*>(an.buildTree());
     if (res == nullptr)
         return 2;

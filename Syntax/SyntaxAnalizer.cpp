@@ -10,9 +10,24 @@ SyntaxAnalizer::~SyntaxAnalizer()
 
 void SyntaxAnalizer::getNext()
 {
-    currentToken = inputSrc->getToken();
-    cout << "Type: " << lexemaToString(currentToken.type) << " Value: " << currentToken.value << endl;
-    ++index;
+    if ( index != inputTokens.size())
+    {
+        ++index;
+        currentToken = inputTokens[index - 1];
+    }
+    else
+    {
+        currentToken = inputSrc->getToken();
+        inputTokens.push_back(currentToken);
+        cout << "Type: " << lexemaToString(currentToken.type) << " Value: " << currentToken.value << endl;
+        ++index;
+    }
+}
+
+void SyntaxAnalizer::unGet()
+{
+    --index;
+    currentToken = inputTokens[index - 1];
 }
 
 bool SyntaxAnalizer::accept(Lexema type)
@@ -44,6 +59,7 @@ void SyntaxAnalizer::warning(const string msg)
 ASTNode* SyntaxAnalizer::buildTree()
 {
     index = 0;
+    inputTokens.clear();
     getNext();
     treeSuccessfulyConstructed = true;
 
@@ -101,7 +117,8 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
     case Lexema::STRING:
         equalSign(get<cmdData>(node->NodeData).cmd); break;
     default:
-        error("cmd: command not found");
+        warning("cmd: wrong token will be replaced with echo");
+        echo(get<cmdData>(node->NodeData).cmd);
     }
 }
 
