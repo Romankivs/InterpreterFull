@@ -13,7 +13,6 @@ public:
 
     bool accept(Lexema type);
     bool curTokEqual(Lexema type);
-    void error(const string msg);
     void warning(const string msg);
     ASTNode* getResult();
     ASTNode* buildTree();

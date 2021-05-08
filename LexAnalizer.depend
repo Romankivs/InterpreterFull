@@ -75,7 +75,7 @@
 	<climits>
 	<vector>
 
-1620469836 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
+1620474163 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
 	"LexAnalizer.h"
 	"STNode.h"
 	"SyntaxAnalizer.h"
@@ -84,7 +84,7 @@
 1620327405 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
 	"STNodeData.h"
 
-1620470962 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
+1620474229 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
 	"Additional.h"
 	"STNode.h"
 	"LexAnalizer.h"
@@ -92,7 +92,7 @@
 1620006266 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1620470949 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1620474149 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
 1620149822 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp

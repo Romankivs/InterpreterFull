@@ -12,7 +12,7 @@ int main(int argc, char** argv, char** envp)
     // input
     string inp;
     //getline(cin, inp);
-    analizer.setInputString("\" \"=5");
+    analizer.setInputString("5=test");
     //Syntax analizer//
     SyntaxAnalizer an(&analizer);
     fullCmdNode* res = dynamic_cast<fullCmdNode*>(an.buildTree());
@@ -25,7 +25,7 @@ int main(int argc, char** argv, char** envp)
     eval.storage = &strg;
     res->accept(eval);
     // second analized str //
-    analizer.setInputString(" echo ${}  cum");
+    analizer.setInputString(" ecc $5 cum");
     res = dynamic_cast<fullCmdNode*>(an.buildTree());
     if (res == nullptr)
         return 2;

@@ -45,30 +45,9 @@ bool SyntaxAnalizer::curTokEqual(Lexema type)
     return (currentToken.type == type);
 }
 
-void SyntaxAnalizer::error(const string msg)
-{
-    cout << msg << " (Index: " << index << ")" << endl;
-    treeSuccessfulyConstructed = false;
-}
-
 void SyntaxAnalizer::warning(const string msg)
 {
     cout << "(Warning) " << msg << " (Index: " << index << ")" << endl;
-}
-
-ASTNode* SyntaxAnalizer::buildTree()
-{
-    index = 0;
-    inputTokens.clear();
-    getNext();
-    treeSuccessfulyConstructed = true;
-
-    resultRoot = new fullCmdNode;
-    accept(Lexema::WHITESPACE);
-    cmd(get<fullCmdData>(resultRoot->NodeData).command);
-    if (currentToken.type != Lexema::END_OF_LINE)
-        warning("fullCmd: too many tokens, some of them were ignored");
-    return getResult();
 }
 
 Token SyntaxAnalizer::searchForRightFunc(const string& inp)
@@ -86,39 +65,60 @@ Token SyntaxAnalizer::searchForRightFunc(const string& inp)
     }
     if (minDist > 2) // if no suitable replacement found
         return Token{Lexema::STRING, inp};
+    warning(inp + " was replaced with " + bestSuitedFunc.value);
     return bestSuitedFunc;
+}
+
+ASTNode* SyntaxAnalizer::buildTree()
+{
+    index = 0;
+    inputTokens.clear();
+    getNext();
+    treeSuccessfulyConstructed = true;
+
+    resultRoot = new fullCmdNode;
+    accept(Lexema::WHITESPACE);
+    cmd(get<fullCmdData>(resultRoot->NodeData).command);
+    if (currentToken.type != Lexema::END_OF_LINE)
+        warning("fullCmd: too many tokens, some of them were ignored");
+    return getResult();
 }
 
 void SyntaxAnalizer::cmd(ASTNode* &node)
 {
     node = new cmdNode;
-    /*bool validCmd = false;
-    for (int i = 0; i < posCmds.size(); ++i)
-        if currentToken.type
-    */
-    switch (currentToken.type)
+    getNext();
+    if (currentToken.type == Lexema::EQUAL_SIGN) // check for equal sign lexem
+        equalSign(get<cmdData>(node->NodeData).cmd);
+    else
     {
-    case Lexema::ECHO:
-        echo(get<cmdData>(node->NodeData).cmd); break;
-    case Lexema::QUIT:
-        quit(get<cmdData>(node->NodeData).cmd); break;
-    case Lexema::ARGC:
-        argc(get<cmdData>(node->NodeData).cmd); break;
-    case Lexema::ARGV:
-        argv(get<cmdData>(node->NodeData).cmd); break;
-    case Lexema::ENVP:
-        envp(get<cmdData>(node->NodeData).cmd); break;
-    case Lexema::HELP:
-        help(get<cmdData>(node->NodeData).cmd); break;
-    case Lexema::VARS:
-        vars(get<cmdData>(node->NodeData).cmd); break;
-    case Lexema::RUN:
-        run(get<cmdData>(node->NodeData).cmd); break;
-    case Lexema::STRING:
-        equalSign(get<cmdData>(node->NodeData).cmd); break;
-    default:
-        warning("cmd: wrong token will be replaced with echo");
-        echo(get<cmdData>(node->NodeData).cmd);
+        unGet();
+        if (currentToken.type == Lexema::STRING) // check for possible replacement
+        {
+            currentToken = searchForRightFunc(currentToken.value);
+        }
+        switch (currentToken.type)
+        {
+        case Lexema::ECHO:
+            echo(get<cmdData>(node->NodeData).cmd); break;
+        case Lexema::QUIT:
+            quit(get<cmdData>(node->NodeData).cmd); break;
+        case Lexema::ARGC:
+            argc(get<cmdData>(node->NodeData).cmd); break;
+        case Lexema::ARGV:
+            argv(get<cmdData>(node->NodeData).cmd); break;
+        case Lexema::ENVP:
+            envp(get<cmdData>(node->NodeData).cmd); break;
+        case Lexema::HELP:
+            help(get<cmdData>(node->NodeData).cmd); break;
+        case Lexema::VARS:
+            vars(get<cmdData>(node->NodeData).cmd); break;
+        case Lexema::RUN:
+            run(get<cmdData>(node->NodeData).cmd); break;
+        default:
+            warning("cmd: wrong token will be replaced with echo");
+            echo(get<cmdData>(node->NodeData).cmd);
+        }
     }
 }
 
@@ -160,10 +160,10 @@ void SyntaxAnalizer::run(ASTNode* &node)
 
 void SyntaxAnalizer::equalSign(ASTNode* &node)
 {
+    unGet();
     node = new equalSignNode(new stringNode(currentToken.value), nullptr);
     getNext();
-    if (!accept(Lexema::EQUAL_SIGN))
-        error("cmd: command not found");
+    accept(Lexema::EQUAL_SIGN);
     if (curTokEqual(Lexema::STRING))
     {
         get<equalSignData>(node->NodeData).varValue = new stringNode(currentToken.value);
