@@ -109,13 +109,13 @@ void evaluator::visit(runNode* node)
         result = "Library \"" + prtlib + "\" not found\n";
         return;
     }
-    auto funcP = reinterpret_cast<void(*)()>(dlsym(handle, func));
+    auto funcP = reinterpret_cast<int (*)()>(dlsym(handle, func));
     if (funcP == nullptr)
     {
         result = "Function \"" + prtfunc + "\" not found\n";
         return;
     }
-    funcP();
+    result = to_string(funcP()) + "\n";
 };
 
 void evaluator::visit(stringNode* node)
