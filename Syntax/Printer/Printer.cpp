@@ -94,5 +94,5 @@ void Printer::visit(varsNode* node)
 
 void Printer::visit(varSubstitutionNode* node)
 {
-    result =  "(Type: varSubstitution, Data: " + get<varSubstitutionData>(node->NodeData).variable + ")";
+    result =  "(Type: varSubstitution, Data: " + print(get<varSubstitutionData>(node->NodeData).variable) + ")";
 };

@@ -22,6 +22,6 @@ struct runData{ ASTNode* func, *lib; };
 
 struct rawData{ vector<ASTNode*> rawStr; };
 
-struct varSubstitutionData { string variable; };
+struct varSubstitutionData { ASTNode* variable; };
 
 struct stringData{ string value; };

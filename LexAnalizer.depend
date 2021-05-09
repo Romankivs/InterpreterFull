@@ -78,29 +78,29 @@
 1620488544 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
 	"Interpreter.h"
 
-1620486435 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
+1620547809 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
 	"STNodeData.h"
 
-1620488544 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
+1620557652 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
 	"STNode.h"
 	"LexAnalizer.h"
 
 1620006266 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1620489293 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1620557529 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
 1620149822 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
 	"STNode.h"
 
-1620006266 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNodeData.h
+1620547365 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNodeData.h
 	<vector>
 	<iostream>
 	<variant>
 	<memory>
 
-1620496408 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
+1620547539 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
 	"evaluator.h"
 
 1620489711 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
@@ -199,7 +199,7 @@
 1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varsNode.cpp
 	"../../Visitor.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varSubstitutionNode.cpp
+1620547792 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varSubstitutionNode.cpp
 	"../../Visitor.h"
 
 1620405235 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/Additional.cpp
@@ -240,7 +240,7 @@
 1620486014 /home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.h
 	"../../Visitor.h"
 
-1620486065 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.cpp
+1620547580 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.cpp
 	"Printer.h"
 	"evaluator.h"
 

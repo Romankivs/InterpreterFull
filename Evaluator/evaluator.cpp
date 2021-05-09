@@ -130,7 +130,7 @@ void evaluator::visit(varsNode* node)
 
 void evaluator::visit(varSubstitutionNode* node)
 {
-    string varName = get<varSubstitutionData>(node->NodeData).variable;
+    string varName = evaluate(get<varSubstitutionData>(node->NodeData).variable);
     result = storage->getVarValue(varName);
     if (result.empty())
         warning("evaluator: variable " + varName + " doesn`t exist or empty");

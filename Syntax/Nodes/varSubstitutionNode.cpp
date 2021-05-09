@@ -5,9 +5,14 @@ varSubstitutionNode::varSubstitutionNode()
     NodeData = varSubstitutionData{};
 }
 
-varSubstitutionNode::varSubstitutionNode(const string& varName)
+varSubstitutionNode::varSubstitutionNode(ASTNode* node)
 {
-    NodeData = varSubstitutionData{varName};
+    get<varSubstitutionData>(NodeData).variable = node;
+}
+
+varSubstitutionNode::~varSubstitutionNode()
+{
+    delete get<varSubstitutionData>(NodeData).variable;
 }
 
 void varSubstitutionNode::accept(Visitor &v)

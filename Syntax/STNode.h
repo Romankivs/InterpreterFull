@@ -45,7 +45,8 @@ struct rawNode : public ASTNode
 struct varSubstitutionNode : public ASTNode
 {
     varSubstitutionNode();
-    varSubstitutionNode(const string& varName);
+    varSubstitutionNode(ASTNode* node);
+    ~varSubstitutionNode();
     void accept(Visitor &v) override;
 
 };

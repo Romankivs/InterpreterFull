@@ -130,7 +130,7 @@ void SyntaxAnalizer::run(ASTNode* &node)
     node = new runNode();
     if (!curTokEqual(Lexema::END_OF_LINE))
     {
-        rawWithoutSpaces(get<runData>(node->NodeData).func);
+        rawUntilFound(get<runData>(node->NodeData).func, {Lexema::END_OF_LINE, Lexema::WHITESPACE});
     }
     else
     {
@@ -142,7 +142,7 @@ void SyntaxAnalizer::run(ASTNode* &node)
     accept(Lexema::WHITESPACE);
     if (!curTokEqual(Lexema::END_OF_LINE))
     {
-        rawWithoutSpaces(get<runData>(node->NodeData).lib);
+        rawUntilFound(get<runData>(node->NodeData).lib, {Lexema::END_OF_LINE, Lexema::WHITESPACE});
     }
     else
     {
@@ -161,7 +161,7 @@ void SyntaxAnalizer::equalSign(ASTNode* &node)
     accept(Lexema::EQUAL_SIGN);
     if (!curTokEqual(Lexema::END_OF_LINE))
     {
-        rawWithoutSpaces(get<equalSignData>(node->NodeData).varValue);
+        rawUntilFound(get<equalSignData>(node->NodeData).varValue, {Lexema::END_OF_LINE, Lexema::WHITESPACE});
     }
     else
     {
@@ -177,40 +177,18 @@ void SyntaxAnalizer::echo(ASTNode* &node)
     node = new echoNode;
     getNext(); // skip "echo"
     if (accept(Lexema::WHITESPACE))
-        raw(get<echoData>(node->NodeData).raw);
+        rawUntilFound(get<echoData>(node->NodeData).raw, {Lexema::END_OF_LINE});
     else
     {
         warning("echo: nothing to output");
-        raw(get<echoData>(node->NodeData).raw);
+        rawUntilFound(get<echoData>(node->NodeData).raw, {Lexema::END_OF_LINE});
     }
 }
 
-void SyntaxAnalizer::raw(ASTNode* &node)
+void SyntaxAnalizer::rawUntilFound(ASTNode* &node, initializer_list<Lexema> terminators)
 {
     vector<ASTNode*> result;
-    while (!curTokEqual(Lexema::END_OF_LINE))
-    {
-        if (accept(Lexema::DOLLAR_SIGN))
-        {
-            ASTNode* res;
-            varSubstitution(res);
-            result.push_back(res);
-        }
-        else
-        {
-            result.push_back(new stringNode(currentToken.value));
-            getNext();
-        }
-    }
-    if (result.empty()) // output nothing
-        result.push_back(new stringNode(""));
-    node = new rawNode(result);
-}
-
-void SyntaxAnalizer::rawWithoutSpaces(ASTNode* &node)
-{
-    vector<ASTNode*> result;
-    while (!curTokEqual(Lexema::END_OF_LINE) && !curTokEqual(Lexema::WHITESPACE))
+    while (find(terminators.begin(), terminators.end(), currentToken.type) == terminators.end()) // while terminator not found
     {
         if (accept(Lexema::DOLLAR_SIGN))
         {
@@ -232,16 +210,16 @@ void SyntaxAnalizer::rawWithoutSpaces(ASTNode* &node)
 void SyntaxAnalizer::varSubstitution(ASTNode* &node)
 {
     accept(Lexema::OPEN_BRACE);
-    if (curTokEqual(Lexema::STRING))
+    if (!curTokEqual(Lexema::END_OF_LINE))
     {
-        node = new varSubstitutionNode(currentToken.value);
-        getNext();
+        node = new varSubstitutionNode();
+        rawUntilFound(get<varSubstitutionData>(node->NodeData).variable, {Lexema::END_OF_LINE, Lexema::WHITESPACE, Lexema::CLOSE_BRACE});
     }
     else
     {
         warning("varSubstitution: no value to substitute, replaced with whitespace");
         currentToken = Token{Lexema::STRING, " "};
-        node = new varSubstitutionNode(currentToken.value);
+        node = new varSubstitutionNode(new stringNode(currentToken.value));
         getNext();
     }
     accept(Lexema::CLOSE_BRACE);
