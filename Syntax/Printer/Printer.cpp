@@ -99,12 +99,12 @@ void Printer::visit(varSubstitutionNode* node)
 
 void Printer::visit(saveNode* node)
 {
-    result = "(Type: save)";
+    result = "(Type: save, Data: " + print(get<saveData>(node->NodeData).fileName) + ")";
 }
 
 void Printer::visit(loadNode* node)
 {
-    result = "(Type: load)";
+    result = "(Type: load, Data: " + print(get<loadData>(node->NodeData).fileName) + ")";
 }
 
 void Printer::visit(purgeNode* node)

@@ -49,17 +49,6 @@ private:
                                                               {Lexema::SAVE, &SyntaxAnalizer::save},
                                                               {Lexema::LOAD, &SyntaxAnalizer::load},
                                                               {Lexema::PURGE, &SyntaxAnalizer::purge}};
-    map<string, Lexema> posCmds = {{"echo", Lexema::ECHO},
-                                   {"quit", Lexema::QUIT},
-                                   {"argc", Lexema::ARGC},
-                                   {"argv", Lexema::ARGV},
-                                   {"envp", Lexema::ENVP},
-                                   {"help", Lexema::HELP},
-                                   {"vars", Lexema::VARS},
-                                   {"run", Lexema::RUN},
-                                   {"save", Lexema::SAVE},
-                                   {"load", Lexema::LOAD},
-                                   {"purge", Lexema::PURGE},};
 };
 
 

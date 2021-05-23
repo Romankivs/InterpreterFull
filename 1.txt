@@ -1,0 +1,6 @@
+load 111.txt
+load
+load 111.txt
+save 111.txt
+load 11.txt
+save 1.txt

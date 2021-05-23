@@ -56,13 +56,13 @@ Token SyntaxAnalizer::searchForRightFunc(const string& inp)
 {
     Token bestSuitedFunc;
     int minDist = INT_MAX;
-    for (auto& x : posCmds)
+    for (auto& x : possibleCmds)
     {
-        int dist = LevensteinDistance(inp, x.first);
+        int dist = LevensteinDistance(inp, lexemaToString(x.first));
         if (dist < minDist)
         {
             minDist = dist;
-            bestSuitedFunc = Token{x.second, x.first};
+            bestSuitedFunc = Token{x.first, lexemaToString(x.first)};
         }
     }
     if (minDist > 2) // if no suitable replacement found
@@ -98,31 +98,12 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
         {
             currentToken = searchForRightFunc(currentToken.value);
         }
-        switch (currentToken.type)
+        if (possibleCmds.contains(currentToken.type))
         {
-        case Lexema::ECHO:
-            echo(get<cmdData>(node->NodeData).cmd); break;
-        case Lexema::QUIT:
-            quit(get<cmdData>(node->NodeData).cmd); break;
-        case Lexema::ARGC:
-            argc(get<cmdData>(node->NodeData).cmd); break;
-        case Lexema::ARGV:
-            argv(get<cmdData>(node->NodeData).cmd); break;
-        case Lexema::ENVP:
-            envp(get<cmdData>(node->NodeData).cmd); break;
-        case Lexema::HELP:
-            help(get<cmdData>(node->NodeData).cmd); break;
-        case Lexema::VARS:
-            vars(get<cmdData>(node->NodeData).cmd); break;
-        case Lexema::RUN:
-            run(get<cmdData>(node->NodeData).cmd); break;
-        case Lexema::SAVE:
-            save(get<cmdData>(node->NodeData).cmd); break;
-        case Lexema::LOAD:
-            load(get<cmdData>(node->NodeData).cmd); break;
-        case Lexema::PURGE:
-            purge(get<cmdData>(node->NodeData).cmd); break;
-        default:
+            (*this.*possibleCmds[currentToken.type])(get<cmdData>(node->NodeData).cmd);
+        }
+        else
+        {
             warning("cmd: wrong token will be replaced with echo");
             echo(get<cmdData>(node->NodeData).cmd);
         }

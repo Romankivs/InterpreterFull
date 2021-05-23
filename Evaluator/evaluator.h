@@ -1,5 +1,6 @@
 #pragma once
 #include <dlfcn.h>
+#include <filesystem>
 #include "../Visitor/Visitor.h"
 #include "memoryManager.h"
 #include "CmdHistoryManager.h"

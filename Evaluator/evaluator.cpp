@@ -85,7 +85,7 @@ void evaluator::visit(helpNode* node)
         "vars - display variables\n"
         "save - save command history to a file\n"
         "load - load command history from a file\n"
-        "purge - delete current command history\nh";
+        "purge - delete current command history\n";
 };
 
 void evaluator::visit(quitNode* node)
@@ -148,7 +148,14 @@ void evaluator::visit(saveNode* node)
 void evaluator::visit(loadNode* node)
 {
     const string inputFile = evaluate(get<loadData>(node->NodeData).fileName);
-    historyManager->loadHistoryFromFile(inputFile);
+    if (!filesystem::exists(inputFile))
+    {
+        warning("load: such file doesn`t exist");
+    }
+    else
+    {
+        historyManager->loadHistoryFromFile(inputFile);
+    }
 }
 
 void evaluator::visit(purgeNode* node)

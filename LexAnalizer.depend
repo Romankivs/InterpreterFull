@@ -81,14 +81,14 @@
 1620547809 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
 	"STNodeData.h"
 
-1621769018 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
+1621770484 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
 	"../Syntax/Nodes/STNode.h"
 	"../LexAnalizer/LexAnalizer.h"
 
 1620006266 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1621769031 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1621770563 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
 1620149822 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
@@ -100,11 +100,12 @@
 	<variant>
 	<memory>
 
-1621767326 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
+1621770324 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
 	"evaluator.h"
 
-1621766591 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
+1621770808 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
 	<dlfcn.h>
+	<filesystem>
 	"../Visitor/Visitor.h"
 	"memoryManager.h"
 	"CmdHistoryManager.h"
@@ -242,7 +243,7 @@
 1621766610 /home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.h
 	"../../Visitor/Visitor.h"
 
-1621766525 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.cpp
+1621770669 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.cpp
 	"Printer.h"
 	"evaluator.h"
 
