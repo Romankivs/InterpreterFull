@@ -1,4 +1,4 @@
-#include "../../Visitor.h"
+#include "../../Visitor/Visitor.h"
 
 equalSignNode::equalSignNode(ASTNode* const varName, ASTNode* const varValue)
 {

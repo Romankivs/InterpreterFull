@@ -79,7 +79,7 @@ void evaluator::visit(helpNode* node)
         "argv - displays arguments \n"
         "envp - displays environmental variables\n"
         "run - run a function from a dll library (usage run \"function\" [\"library\"])\n"
-        "Note:library = LibraryFib.so if not specified\n"
+        "Note:library = fib.so if not specified\n"
         "name=value - create an environmental variable\n"
         "$var or ${var} - use a variable (use \" \" to escape whitespaces)\n"
         "vars - display variables\n";

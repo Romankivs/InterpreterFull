@@ -146,8 +146,8 @@ void SyntaxAnalizer::run(ASTNode* &node)
     }
     else
     {
-        warning("run: invalid lib replaced with LibraryFib.so");
-        currentToken = Token{Lexema::STRING, "LibraryFib.so"};
+        warning("run: invalid lib replaced with fib.so");
+        currentToken = Token{Lexema::STRING, "fib.so"};
         get<runData>(node->NodeData).lib = new stringNode(currentToken.value);
         getNext();
     }
@@ -165,7 +165,7 @@ void SyntaxAnalizer::equalSign(ASTNode* &node)
     }
     else
     {
-        warning("equal: wrong token, it was substituted with empty string");
+        warning("equal: not enough arguments");
         currentToken = Token{Lexema::STRING, ""};
         get<equalSignData>(node->NodeData).varValue = new stringNode(currentToken.value);
         getNext();

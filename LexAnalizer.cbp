@@ -57,7 +57,6 @@
 		<Unit filename="LexAnalizer/State.h" />
 		<Unit filename="MemoryManager/memoryManager.cpp" />
 		<Unit filename="MemoryManager/memoryManager.h" />
-		<Unit filename="Syntax/Nodes/STNode.cpp" />
 		<Unit filename="Syntax/Nodes/argcNode.cpp" />
 		<Unit filename="Syntax/Nodes/argvNode.cpp" />
 		<Unit filename="Syntax/Nodes/cmdNode.cpp" />
@@ -78,7 +77,7 @@
 		<Unit filename="Syntax/STNodeData.h" />
 		<Unit filename="Syntax/SyntaxAnalizer.cpp" />
 		<Unit filename="Syntax/SyntaxAnalizer.h" />
-		<Unit filename="Visitor.h" />
+		<Unit filename="Visitor/Visitor.h" />
 		<Unit filename="src/main.cpp" />
 		<Extensions />
 	</Project>

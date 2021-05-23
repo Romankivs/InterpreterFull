@@ -88,7 +88,7 @@
 1620006266 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1620557529 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1620641268 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
 1620149822 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
@@ -100,18 +100,18 @@
 	<variant>
 	<memory>
 
-1620547539 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
+1620595820 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
 	"evaluator.h"
 
-1620489711 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
+1620645572 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
 	<dlfcn.h>
-	"../Visitor.h"
+	"../Visitor/Visitor.h"
 	"memoryManager.h"
 
 1620388904 source:/home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.cpp
 	"memoryManager.h"
 
-1620388305 /home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.h
+1620656092 /home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.h
 	<map>
 	<string>
 
@@ -157,50 +157,50 @@
 1620150171 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/varSubstitutionNode.cpp
 	"STNode.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argcNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argcNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argvNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/argvNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/cmdNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/cmdNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/echoNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/echoNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/envpNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/envpNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/equalSignNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/equalSignNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/fullCmdNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/fullCmdNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486342 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/helpNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/helpNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486342 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/quitNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/quitNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486342 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/rawNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/rawNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/runNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/runNode.cpp
+	"../../Visitor/Visitor.h"
 
 1620153107 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/STNode.cpp
 	"STNode.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/stringNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/stringNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620486343 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varsNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varsNode.cpp
+	"../../Visitor/Visitor.h"
 
-1620547792 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varSubstitutionNode.cpp
-	"../../Visitor.h"
+1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varSubstitutionNode.cpp
+	"../../Visitor/Visitor.h"
 
 1620405235 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/Additional.cpp
 	"Additional.h"
@@ -237,10 +237,13 @@
 	"SyntaxAnalizer.h"
 	"Printer.h"
 
-1620486014 /home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.h
-	"../../Visitor.h"
+1620645622 /home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.h
+	"../../Visitor/Visitor.h"
 
 1620547580 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.cpp
 	"Printer.h"
 	"evaluator.h"
+
+1620484713 /home/sviat/CbProjects/LexAnalizer3/Visitor/Visitor.h
+	"STNode.h"
 

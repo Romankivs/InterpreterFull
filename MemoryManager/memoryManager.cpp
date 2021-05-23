@@ -19,3 +19,5 @@ string memoryManager::listAllVars()
         result += it.first + "=" + it.second + "\n";
     return result;
 }
+
+

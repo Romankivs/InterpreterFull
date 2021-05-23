@@ -1,6 +1,6 @@
 #pragma once
 #include <dlfcn.h>
-#include "../Visitor.h"
+#include "../Visitor/Visitor.h"
 #include "memoryManager.h"
 
 class evaluator : public Visitor
