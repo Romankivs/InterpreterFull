@@ -1,7 +1,7 @@
 #include "evaluator.h"
 
-evaluator::evaluator(memoryManager* storage, int argc, char** argv, char** envp) :
-    storage(storage), argc(argc), argv(argv), envp(envp) {};
+evaluator::evaluator(memoryManager* storage, CmdHistoryManager* historyManager, int argc, char** argv, char** envp) :
+    storage(storage), historyManager(historyManager), argc(argc), argv(argv), envp(envp) {};
 
 evaluator::~evaluator()
 {
@@ -11,7 +11,7 @@ evaluator::~evaluator()
 
 string evaluator::evaluate(ASTNode* node)
 {
-  evaluator v(storage, argc, argv, envp);
+  evaluator v(storage, historyManager, argc, argv, envp);
   node->accept(v);
   return v.getRes();
 }
@@ -82,7 +82,10 @@ void evaluator::visit(helpNode* node)
         "Note:library = fib.so if not specified\n"
         "name=value - create an environmental variable\n"
         "$var or ${var} - use a variable (use \" \" to escape whitespaces)\n"
-        "vars - display variables\n";
+        "vars - display variables\n"
+        "save - save command history to a file\n"
+        "load - load command history from a file\n"
+        "purge - delete current command history\nh";
 };
 
 void evaluator::visit(quitNode* node)
@@ -135,3 +138,20 @@ void evaluator::visit(varSubstitutionNode* node)
     if (result.empty())
         warning("evaluator: variable " + varName + " doesn`t exist or empty");
 };
+
+void evaluator::visit(saveNode* node)
+{
+    const string outputFile = evaluate(get<saveData>(node->NodeData).fileName);
+    historyManager->saveHistoryToFile(outputFile);
+}
+
+void evaluator::visit(loadNode* node)
+{
+    const string inputFile = evaluate(get<loadData>(node->NodeData).fileName);
+    historyManager->loadHistoryFromFile(inputFile);
+}
+
+void evaluator::visit(purgeNode* node)
+{
+    historyManager->clearBuffer();
+}

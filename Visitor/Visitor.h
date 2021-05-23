@@ -1,5 +1,5 @@
 #pragma once
-#include "STNode.h"
+#include "../Syntax/Nodes/STNode.h"
 
 class Visitor {
 public:
@@ -17,5 +17,8 @@ public:
     virtual void visit(stringNode* node) = 0;
     virtual void visit(varsNode* node) = 0;
     virtual void visit(varSubstitutionNode* node) = 0;
+    virtual void visit(saveNode* node) = 0;
+    virtual void visit(loadNode* node) = 0;
+    virtual void visit(purgeNode* node) = 0;
 };
 

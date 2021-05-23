@@ -116,6 +116,12 @@ void SyntaxAnalizer::cmd(ASTNode* &node)
             vars(get<cmdData>(node->NodeData).cmd); break;
         case Lexema::RUN:
             run(get<cmdData>(node->NodeData).cmd); break;
+        case Lexema::SAVE:
+            save(get<cmdData>(node->NodeData).cmd); break;
+        case Lexema::LOAD:
+            load(get<cmdData>(node->NodeData).cmd); break;
+        case Lexema::PURGE:
+            purge(get<cmdData>(node->NodeData).cmd); break;
         default:
             warning("cmd: wrong token will be replaced with echo");
             echo(get<cmdData>(node->NodeData).cmd);
@@ -175,14 +181,9 @@ void SyntaxAnalizer::equalSign(ASTNode* &node)
 void SyntaxAnalizer::echo(ASTNode* &node)
 {
     node = new echoNode;
-    getNext(); // skip "echo"
-    if (accept(Lexema::WHITESPACE))
-        rawUntilFound(get<echoData>(node->NodeData).raw, {Lexema::END_OF_LINE});
-    else
-    {
-        warning("echo: nothing to output");
-        rawUntilFound(get<echoData>(node->NodeData).raw, {Lexema::END_OF_LINE});
-    }
+    getNext();
+    accept(Lexema::WHITESPACE);
+    rawUntilFound(get<echoData>(node->NodeData).raw, {Lexema::END_OF_LINE});
 }
 
 void SyntaxAnalizer::rawUntilFound(ASTNode* &node, initializer_list<Lexema> terminators)
@@ -225,6 +226,22 @@ void SyntaxAnalizer::varSubstitution(ASTNode* &node)
     accept(Lexema::CLOSE_BRACE);
 }
 
+void SyntaxAnalizer::save(ASTNode* &node)
+{
+    getNext();
+    accept(Lexema::WHITESPACE);
+    node = new saveNode;
+    rawUntilFound(get<saveData>(node->NodeData).fileName, {Lexema::END_OF_LINE, Lexema::WHITESPACE});
+}
+
+void SyntaxAnalizer::load(ASTNode* &node)
+{
+    getNext();
+    accept(Lexema::WHITESPACE);
+    node = new loadNode;
+    rawUntilFound(get<loadData>(node->NodeData).fileName, {Lexema::END_OF_LINE, Lexema::WHITESPACE});
+}
+
 void SyntaxAnalizer::quit(ASTNode* &node)
 {
     getNext();
@@ -259,6 +276,12 @@ void SyntaxAnalizer::vars(ASTNode* &node)
 {
     getNext();
     node = new varsNode;
+}
+
+void SyntaxAnalizer::purge(ASTNode* &node)
+{
+    getNext();
+    node = new purgeNode;
 }
 
 ASTNode* SyntaxAnalizer::getResult()

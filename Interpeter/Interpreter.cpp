@@ -6,9 +6,10 @@ void Interpreter::start()
 {
     LexAnalizer analizer;
     SyntaxAnalizer an(&analizer);
-    memoryManager strg;
-    evaluator eval(&strg, argc, argv, envp);
-    fullCmdNode* res;
+    memoryManager storage;
+    CmdHistoryManager historyManager;
+    evaluator eval(&storage, &historyManager, argc, argv, envp);
+    ASTNode* res;
     string inp;
     #ifdef DEBUG
         Printer printer;
@@ -21,8 +22,9 @@ void Interpreter::start()
             getline(cin, inp);
             if (!inp.empty())
             {
+                historyManager.addToBuffer(inp + "\n");
                 analizer.setInputString(inp);
-                res = dynamic_cast<fullCmdNode*>(an.buildTree());
+                res = an.buildTree();
                 #ifdef DEBUG
                     printer.print(res);
                 #endif // DEBUG

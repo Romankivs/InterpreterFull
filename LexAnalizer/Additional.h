@@ -20,7 +20,10 @@ enum Lexema
     ENVP,
     HELP,
     VARS,
-    RUN
+    RUN,
+    SAVE,
+    LOAD,
+    PURGE
 };
 
 string lexemaToString(Lexema lex); // just for demonstrational purposes

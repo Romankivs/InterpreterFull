@@ -24,4 +24,8 @@ struct rawData{ vector<ASTNode*> rawStr; };
 
 struct varSubstitutionData { ASTNode* variable; };
 
+struct saveData{ ASTNode* fileName; };
+
+struct loadData{ ASTNode* fileName; };
+
 struct stringData{ string value; };

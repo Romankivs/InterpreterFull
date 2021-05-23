@@ -42,7 +42,10 @@ private:
                                         {"envp", Lexema::ENVP},
                                         {"help", Lexema::HELP},
                                         {"vars", Lexema::VARS},
-                                        {"run", Lexema::RUN}};
+                                        {"run", Lexema::RUN},
+                                        {"save", Lexema::SAVE},
+                                        {"load", Lexema::LOAD},
+                                        {"purge", Lexema::PURGE}};
 };
 
 

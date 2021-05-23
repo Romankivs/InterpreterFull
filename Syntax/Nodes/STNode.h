@@ -7,7 +7,9 @@ struct ASTNode
 {
     virtual ~ASTNode() = default;
     virtual void accept(Visitor &v) {};
-    variant<fullCmdData, equalSignData, cmdData, echoData, runData, rawData, varSubstitutionData, stringData> NodeData;
+    variant<fullCmdData, equalSignData, cmdData, echoData, runData,
+        rawData, varSubstitutionData, saveData, loadData,
+        stringData> NodeData;
 };
 
 struct fullCmdNode : public ASTNode
@@ -110,3 +112,24 @@ struct runNode : public ASTNode
     void accept(Visitor &v) override;
 
 };
+
+struct saveNode : public ASTNode
+{
+    saveNode();
+    ~saveNode();
+    void accept(Visitor &v) override;
+
+};
+
+struct loadNode : public ASTNode
+{
+    loadNode();
+    ~loadNode();
+    void accept(Visitor &v) override;
+};
+
+struct purgeNode : public ASTNode
+{
+    void accept(Visitor &v) override;
+};
+

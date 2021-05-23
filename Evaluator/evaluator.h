@@ -2,11 +2,12 @@
 #include <dlfcn.h>
 #include "../Visitor/Visitor.h"
 #include "memoryManager.h"
+#include "CmdHistoryManager.h"
 
 class evaluator : public Visitor
 {
 public:
-    evaluator(memoryManager* storage, int argc, char** argv, char** envp);
+    evaluator(memoryManager* storage, CmdHistoryManager* historyManager, int argc, char** argv, char** envp);
     ~evaluator();
     string evaluate(ASTNode* node);
     string getRes();
@@ -25,9 +26,13 @@ public:
     void visit(stringNode* node);
     void visit(varsNode* node);
     void visit(varSubstitutionNode* node);
+    void visit(saveNode* node);
+    void visit(loadNode* node);
+    void visit(purgeNode* node);
 private:
     ASTNode* inputTree;
     memoryManager* storage;
+    CmdHistoryManager* historyManager;
     vector<void*> loadedLibs;
     string result;
     int argc;

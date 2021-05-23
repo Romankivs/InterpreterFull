@@ -96,3 +96,18 @@ void Printer::visit(varSubstitutionNode* node)
 {
     result =  "(Type: varSubstitution, Data: " + print(get<varSubstitutionData>(node->NodeData).variable) + ")";
 };
+
+void Printer::visit(saveNode* node)
+{
+    result = "(Type: save)";
+}
+
+void Printer::visit(loadNode* node)
+{
+    result = "(Type: load)";
+}
+
+void Printer::visit(purgeNode* node)
+{
+    result = "(Type: purge)";
+}

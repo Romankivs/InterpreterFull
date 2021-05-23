@@ -75,20 +75,20 @@
 	<climits>
 	<vector>
 
-1620488544 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
+1621763113 source:/home/sviat/CbProjects/LexAnalizer3/src/main.cpp
 	"Interpreter.h"
 
 1620547809 /home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.h
 	"STNodeData.h"
 
-1620557652 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
-	"STNode.h"
-	"LexAnalizer.h"
+1621769018 /home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.h
+	"../Syntax/Nodes/STNode.h"
+	"../LexAnalizer/LexAnalizer.h"
 
 1620006266 source:/home/sviat/CbProjects/LexAnalizer3/src/State.cpp
 	"State.h"
 
-1620641268 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
+1621769031 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/SyntaxAnalizer.cpp
 	"SyntaxAnalizer.h"
 
 1620149822 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/STNode.cpp
@@ -100,15 +100,16 @@
 	<variant>
 	<memory>
 
-1620595820 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
+1621767326 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
 	"evaluator.h"
 
-1620645572 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
+1621766591 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
 	<dlfcn.h>
 	"../Visitor/Visitor.h"
 	"memoryManager.h"
+	"CmdHistoryManager.h"
 
-1620388904 source:/home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.cpp
+1620656092 source:/home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.cpp
 	"memoryManager.h"
 
 1620656092 /home/sviat/CbProjects/LexAnalizer3/MemoryManager/memoryManager.h
@@ -190,8 +191,8 @@
 1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/runNode.cpp
 	"../../Visitor/Visitor.h"
 
-1620153107 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/STNode.cpp
-	"STNode.h"
+1621768786 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/STNode.cpp
+	"../../Visitor/Visitor.h"
 
 1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/stringNode.cpp
 	"../../Visitor/Visitor.h"
@@ -202,16 +203,16 @@
 1620645622 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/varSubstitutionNode.cpp
 	"../../Visitor/Visitor.h"
 
-1620405235 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/Additional.cpp
+1621765865 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/Additional.cpp
 	"Additional.h"
 
-1620489565 /home/sviat/CbProjects/LexAnalizer3/LexAnalizer/Additional.h
+1621765258 /home/sviat/CbProjects/LexAnalizer3/LexAnalizer/Additional.h
 	<string>
 
 1620402918 source:/home/sviat/CbProjects/LexAnalizer3/LexAnalizer/LexAnalizer.cpp
 	"LexAnalizer.h"
 
-1620403154 /home/sviat/CbProjects/LexAnalizer3/LexAnalizer/LexAnalizer.h
+1621765435 /home/sviat/CbProjects/LexAnalizer3/LexAnalizer/LexAnalizer.h
 	<iostream>
 	"State.h"
 	"Additional.h"
@@ -229,21 +230,40 @@
 1620484713 /home/sviat/CbProjects/LexAnalizer3/Visitor.h
 	"STNode.h"
 
-1620486285 source:/home/sviat/CbProjects/LexAnalizer3/Interpeter/Interpreter.cpp
+1621764307 source:/home/sviat/CbProjects/LexAnalizer3/Interpeter/Interpreter.cpp
 	"Interpreter.h"
 
-1620486144 /home/sviat/CbProjects/LexAnalizer3/Interpreter/Interpreter.h
+1621761486 /home/sviat/CbProjects/LexAnalizer3/Interpreter/Interpreter.h
 	"evaluator.h"
 	"SyntaxAnalizer.h"
 	"Printer.h"
+	"CmdHistoryManager.h"
 
-1620645622 /home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.h
+1621766610 /home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.h
 	"../../Visitor/Visitor.h"
 
-1620547580 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.cpp
+1621766525 source:/home/sviat/CbProjects/LexAnalizer3/Syntax/Printer/Printer.cpp
 	"Printer.h"
 	"evaluator.h"
 
-1620484713 /home/sviat/CbProjects/LexAnalizer3/Visitor/Visitor.h
-	"STNode.h"
+1621766457 /home/sviat/CbProjects/LexAnalizer3/Visitor/Visitor.h
+	"../Syntax/Nodes/STNode.h"
+
+1621763866 /home/sviat/CbProjects/LexAnalizer3/CmdHistoryManager/CmdHistoryManager.h
+	<fstream>
+	<istream>
+	<iterator>
+	<string>
+
+1621763969 source:/home/sviat/CbProjects/LexAnalizer3/CmdHistoryManager/CmdHistoryManager.cpp
+	"CmdHistoryManager.h"
+
+1621768775 /home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/STNode.h
+	"STNodeData.h"
+
+1621766867 /home/sviat/CbProjects/LexAnalizer3/Syntax/Nodes/STNodeData.h
+	<vector>
+	<iostream>
+	<variant>
+	<memory>
 

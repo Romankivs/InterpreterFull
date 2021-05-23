@@ -1,4 +1,4 @@
-#include "STNode.h"
+#include "../../Visitor/Visitor.h"
 
 void argcNode::accept(Visitor &v)
 {
@@ -159,6 +159,40 @@ void varSubstitutionNode::accept(Visitor &v)
     v.visit(this);;
 }
 
+saveNode::saveNode()
+{
+    NodeData = saveData{};
+}
+
+saveNode::~saveNode()
+{
+    delete get<saveData>(NodeData).fileName;
+}
+
+void saveNode::accept(Visitor &v)
+{
+    v.visit(this);;
+}
+
+loadNode::loadNode()
+{
+    NodeData = loadData{};
+}
+
+loadNode::~loadNode()
+{
+    delete get<loadData>(NodeData).fileName;
+}
+
+void loadNode::accept(Visitor &v)
+{
+    v.visit(this);;
+}
+
+void purgeNode::accept(Visitor &v)
+{
+    v.visit(this);;
+}
 
 
 

@@ -1,6 +1,6 @@
 #pragma once
-#include "STNode.h"
-#include "LexAnalizer.h"
+#include "../Syntax/Nodes/STNode.h"
+#include "../LexAnalizer/LexAnalizer.h"
 
 class SyntaxAnalizer
 {
@@ -26,6 +26,9 @@ public:
     void help(ASTNode* &node);
     void vars(ASTNode* &node);
     void run(ASTNode* &node);
+    void save(ASTNode* &node);
+    void load(ASTNode* &node);
+    void purge(ASTNode* &node);
     void equalSign(ASTNode* &node);
     void rawUntilFound(ASTNode* &node, initializer_list<Lexema> terminators); // works until finds a terminator lex
     void varSubstitution(ASTNode* &node);
@@ -35,6 +38,17 @@ private:
     vector<Token> inputTokens;
     LexAnalizer* inputSrc;
     ASTNode* resultRoot;
+    map<Lexema, void(SyntaxAnalizer::*)(ASTNode*&)> possibleCmds = {{Lexema::ECHO, &SyntaxAnalizer::echo},
+                                                              {Lexema::QUIT, &SyntaxAnalizer::quit},
+                                                              {Lexema::ARGC, &SyntaxAnalizer::argc},
+                                                              {Lexema::ARGV, &SyntaxAnalizer::argv},
+                                                              {Lexema::ENVP, &SyntaxAnalizer::envp},
+                                                              {Lexema::HELP, &SyntaxAnalizer::help},
+                                                              {Lexema::VARS, &SyntaxAnalizer::vars},
+                                                              {Lexema::RUN, &SyntaxAnalizer::run},
+                                                              {Lexema::SAVE, &SyntaxAnalizer::save},
+                                                              {Lexema::LOAD, &SyntaxAnalizer::load},
+                                                              {Lexema::PURGE, &SyntaxAnalizer::purge}};
     map<string, Lexema> posCmds = {{"echo", Lexema::ECHO},
                                    {"quit", Lexema::QUIT},
                                    {"argc", Lexema::ARGC},
@@ -42,7 +56,10 @@ private:
                                    {"envp", Lexema::ENVP},
                                    {"help", Lexema::HELP},
                                    {"vars", Lexema::VARS},
-                                   {"run", Lexema::RUN}};
+                                   {"run", Lexema::RUN},
+                                   {"save", Lexema::SAVE},
+                                   {"load", Lexema::LOAD},
+                                   {"purge", Lexema::PURGE},};
 };
 
 

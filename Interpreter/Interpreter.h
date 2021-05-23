@@ -2,6 +2,7 @@
 #include "evaluator.h"
 #include "SyntaxAnalizer.h"
 #include "Printer.h"
+#include "CmdHistoryManager.h"
 
 class Interpreter
 {
