@@ -1,3 +1,0 @@
-load
-load 111.txt
-save 111.txt

@@ -100,7 +100,7 @@
 	<variant>
 	<memory>
 
-1621770324 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
+1621770916 source:/home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.cpp
 	"evaluator.h"
 
 1621770808 /home/sviat/CbProjects/LexAnalizer3/Evaluator/evaluator.h
@@ -250,7 +250,7 @@
 1621766457 /home/sviat/CbProjects/LexAnalizer3/Visitor/Visitor.h
 	"../Syntax/Nodes/STNode.h"
 
-1621763866 /home/sviat/CbProjects/LexAnalizer3/CmdHistoryManager/CmdHistoryManager.h
+1621774102 /home/sviat/CbProjects/LexAnalizer3/CmdHistoryManager/CmdHistoryManager.h
 	<fstream>
 	<istream>
 	<iterator>
@@ -267,4 +267,7 @@
 	<iostream>
 	<variant>
 	<memory>
+
+1621764307 source:/home/sviat/CbProjects/LexAnalizer3/Interpreter/Interpreter.cpp
+	"Interpreter.h"
 

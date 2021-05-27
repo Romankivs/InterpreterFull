@@ -20,6 +20,7 @@
 					<Add directory="MemoryManager" />
 					<Add directory="Interpreter" />
 					<Add directory="Syntax/Printer" />
+					<Add directory="CmdHistoryManager" />
 				</Compiler>
 			</Target>
 			<Target title="Release">
@@ -35,6 +36,7 @@
 					<Add directory="MemoryManager" />
 					<Add directory="Interpreter" />
 					<Add directory="Syntax/Printer" />
+					<Add directory="CmdHistoryManager" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -45,9 +47,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="CmdHistoryManager/CmdHistoryManager.cpp" />
+		<Unit filename="CmdHistoryManager/CmdHistoryManager.h" />
 		<Unit filename="Evaluator/evaluator.cpp" />
 		<Unit filename="Evaluator/evaluator.h" />
-		<Unit filename="Interpeter/Interpreter.cpp" />
+		<Unit filename="Interpreter/Interpreter.cpp" />
 		<Unit filename="Interpreter/Interpreter.h" />
 		<Unit filename="LexAnalizer/Additional.cpp" />
 		<Unit filename="LexAnalizer/Additional.h" />
@@ -57,24 +61,11 @@
 		<Unit filename="LexAnalizer/State.h" />
 		<Unit filename="MemoryManager/memoryManager.cpp" />
 		<Unit filename="MemoryManager/memoryManager.h" />
-		<Unit filename="Syntax/Nodes/argcNode.cpp" />
-		<Unit filename="Syntax/Nodes/argvNode.cpp" />
-		<Unit filename="Syntax/Nodes/cmdNode.cpp" />
-		<Unit filename="Syntax/Nodes/echoNode.cpp" />
-		<Unit filename="Syntax/Nodes/envpNode.cpp" />
-		<Unit filename="Syntax/Nodes/equalSignNode.cpp" />
-		<Unit filename="Syntax/Nodes/fullCmdNode.cpp" />
-		<Unit filename="Syntax/Nodes/helpNode.cpp" />
-		<Unit filename="Syntax/Nodes/quitNode.cpp" />
-		<Unit filename="Syntax/Nodes/rawNode.cpp" />
-		<Unit filename="Syntax/Nodes/runNode.cpp" />
-		<Unit filename="Syntax/Nodes/stringNode.cpp" />
-		<Unit filename="Syntax/Nodes/varSubstitutionNode.cpp" />
-		<Unit filename="Syntax/Nodes/varsNode.cpp" />
+		<Unit filename="Syntax/Nodes/STNode.cpp" />
+		<Unit filename="Syntax/Nodes/STNode.h" />
+		<Unit filename="Syntax/Nodes/STNodeData.h" />
 		<Unit filename="Syntax/Printer/Printer.cpp" />
 		<Unit filename="Syntax/Printer/Printer.h" />
-		<Unit filename="Syntax/STNode.h" />
-		<Unit filename="Syntax/STNodeData.h" />
 		<Unit filename="Syntax/SyntaxAnalizer.cpp" />
 		<Unit filename="Syntax/SyntaxAnalizer.h" />
 		<Unit filename="Visitor/Visitor.h" />

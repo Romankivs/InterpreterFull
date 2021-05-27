@@ -13,7 +13,7 @@ public:
     void loadHistoryFromFile(const string& fileName);
     void saveHistoryToFile(const string& fileName);
     void clearBuffer();
-//private:
+private:
     string cmdHistoryBuffer;
 };
 
