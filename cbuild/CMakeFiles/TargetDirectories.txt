@@ -1,0 +1,17 @@
+/home/sviat/CbProjects/LexAnalizer3/cbuild/CMakeFiles/rebuild_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/CMakeFiles/edit_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/CMakeFiles/Interp.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/MemoryManager/CMakeFiles/rebuild_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/MemoryManager/CMakeFiles/edit_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/LexAnalizer/CMakeFiles/rebuild_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/LexAnalizer/CMakeFiles/edit_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/Visitor/CMakeFiles/rebuild_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/Visitor/CMakeFiles/edit_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/Syntax/CMakeFiles/rebuild_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/Syntax/CMakeFiles/edit_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/Evaluator/CMakeFiles/rebuild_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/Evaluator/CMakeFiles/edit_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/Interpreter/CMakeFiles/rebuild_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/Interpreter/CMakeFiles/edit_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/CmdHistoryManager/CMakeFiles/rebuild_cache.dir
+/home/sviat/CbProjects/LexAnalizer3/cbuild/CmdHistoryManager/CMakeFiles/edit_cache.dir

@@ -250,7 +250,7 @@
 1621766457 /home/sviat/CbProjects/LexAnalizer3/Visitor/Visitor.h
 	"../Syntax/Nodes/STNode.h"
 
-1621774102 /home/sviat/CbProjects/LexAnalizer3/CmdHistoryManager/CmdHistoryManager.h
+1622114103 /home/sviat/CbProjects/LexAnalizer3/CmdHistoryManager/CmdHistoryManager.h
 	<fstream>
 	<istream>
 	<iterator>

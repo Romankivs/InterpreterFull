@@ -1,0 +1,9 @@
+target_sources(Interp
+    PRIVATE
+        State.cpp
+        State.h
+        LexAnalizer.cpp
+        LexAnalizer.h
+        Additional.cpp
+        Additional.h
+)  
